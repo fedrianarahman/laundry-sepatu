@@ -1,5 +1,6 @@
 ﻿<?php
 session_start();
+include './controller/conn.php';
 // Cek apakah sesi login telah diatur
 if (!isset($_SESSION['nama'])) {
     header("Location: ./auth/login.php");

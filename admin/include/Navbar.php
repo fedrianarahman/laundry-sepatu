@@ -1,6 +1,6 @@
 <div class="header">
 			<div class="header-left">
-				<a href="index.php" class="logo"> <img src="assets/img/logo-biru.png" width="50" height="70" alt="logo"> <span class="logoclass"> HEALTH</span> </a>
+				<a href="index.php" class="logo"> <img src="" width="50" height="70" alt="logo"> <span class="logoclass"> </span> </a>
 				<a href="index.php" class="logo logo-small"> <img src="assets/img/logo-biru.png" alt="Logo" width="30" height="30"> </a>
 			</div>
 			<a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
