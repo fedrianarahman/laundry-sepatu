@@ -8,9 +8,10 @@ if (!$photo) {
 }
 $judul = strtolower($_POST['judul']);
 $subJudul = $_POST['subjudul'];
+$harga = $_POST['harga'];
 $created_at = date('Y-m-d H:i:s');
 
-$addDataService = mysqli_query($conn,"INSERT INTO `service`(`id`, `photo`, `judul`, `subJudul`, `created_at`, `updated_at`) VALUES ('','$photo','$judul','$subJudul','$created_at','')");
+$addDataService = mysqli_query($conn,"INSERT INTO `service`(`id`, `photo`, `judul`, `subJudul`, `harga`,`created_at`, `updated_at`) VALUES ('','$photo','$judul','$subJudul','$harga','$created_at','')");
 
 if ($addDataService) {
     $_SESSION['status-info'] = "Data Berhasil dimasukan";

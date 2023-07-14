@@ -59,7 +59,7 @@ $kode_spt = $_GET['id'];
                                         <form method="POST" action="./controller/sepatu/add.php" enctype="multipart/form-data">
                                             <?php
                                             // mengambil data berdasarkan kode sepatu
-                                            $ambilDataProgress = mysqli_query($conn, "SELECT * FROM progress_sepatu WHERE kode_sepatu = '$kode_spt'");
+                                            $ambilDataProgress = mysqli_query($conn, "SELECT * FROM progress_sepatu WHERE kode_sepatu = '$kode_spt' GROUP BY kode_sepatu");
                                             while ($dataProgress = mysqli_fetch_array($ambilDataProgress)) {
                                             ?>
                                             <div class="row formtype">

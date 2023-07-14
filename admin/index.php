@@ -41,12 +41,12 @@ if (!isset($_SESSION['nama'])) {
 						<div class="col-sm-12 mt-5">
 							<?php include './include/welcomeText.php'?>
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item active">Dashboard</li>
+								<li class="breadcrumb-item active">Dashboard <?php echo $_SESSION['level']?></li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-xl-3 col-sm-6 col-12">
 						<div class="card board1 fill">
 							<div class="card-body">
@@ -114,7 +114,7 @@ if (!isset($_SESSION['nama'])) {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!-- <div class="row">
 					<div class="col-md-12 col-lg-6">
 						<div class="card card-chart">

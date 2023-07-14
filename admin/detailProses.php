@@ -66,7 +66,7 @@ $kode_spt = $_GET['kode_spt'];
                                     $ambilData = mysqli_query($conn, "SELECT *
                                 FROM progress_sepatu
                                 WHERE kode_sepatu = '$kode_spt'
-                                ORDER BY id DESC
+                                GROUP BY kode_sepatu ORDER BY id DESC
                                 LIMIT 1");
                                     while ($data = mysqli_fetch_array($ambilData)) {
 
@@ -98,7 +98,8 @@ $kode_spt = $_GET['kode_spt'];
                                         <div class="time-line-wrapper">
                                             <div class="timeline p-4  mb-4">
                                                 <?php
-                                                $getStatus = mysqli_query($conn, "SELECT status, IFNULL(created_at, updated_at) AS tanggal FROM progress_sepatu WHERE kode_sepatu = '$kode_spt'");
+                                                $getStatus = mysqli_query($conn, "SELECT status, IFNULL(created_at, updated_at) AS tanggal FROM progress_sepatu WHERE kode_sepatu = '$kode_spt' 
+                                                ");
                                                 while ($datastatus = mysqli_fetch_array($getStatus)) {
                                                     $tanggal = $datastatus['tanggal'];
                                                     $hari = date('l', strtotime($tanggal)); // Mengambil nama hari dari tanggal

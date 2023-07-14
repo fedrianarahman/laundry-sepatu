@@ -56,7 +56,7 @@ if (!isset($_SESSION['nama'])) {
                                     <div class="col-lg-12">
                                         <form method="POST" action="./controller/service/add.php" enctype="multipart/form-data">
                                             <div class="row formtype">
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>File Upload</label>
                                                         <div class="custom-file mb-3">
@@ -65,16 +65,22 @@ if (!isset($_SESSION['nama'])) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Judul</label>
                                                         <input class="form-control" type="text" name="judul">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Sub Judul</label>
                                                         <input class="form-control" type="text" name="subjudul">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Harga</label>
+                                                        <input class="form-control" type="number" name="harga">
                                                     </div>
                                                 </div>
                                             </div>

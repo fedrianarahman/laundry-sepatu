@@ -1,13 +1,16 @@
 <?php
 session_start();
 include '../conn.php';
-
-$id = $_POST['id'];
-$judul = strtolower($_POST['judul']);
-$subJudul = $_POST['subjudul'];
-$harga = $_POST['harga'];
-$created_at = $_POST['created_at'];
-$updated_at = date('Y-m-d H:i:s');
+// mengambil id user;
+$idUser = $_SESSION['id_user'];
+$nama = trim(strtolower($_POST['nama']));
+$email = $_POST['email'];
+$no_hp = $_POST['no_hp'];
+$role = $_POST['role'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$created_at = $_SESSION['joined_at'];
+$updated_at  = date('Y-m-d H:i:s');
 
 // Cek apakah gambar baru dipilih
 if (!empty($_FILES['photo']['name'])) {
@@ -19,13 +22,14 @@ if (!empty($_FILES['photo']['name'])) {
     $photo = $_POST['old_photo'];
 }
 
-$addDataService = mysqli_query($conn, "UPDATE `service` SET `photo`='$photo',`judul`='$judul',`subJudul`='$subJudul',`harga`='$harga',`created_at`='$created_at',`updated_at`='$updated_at' WHERE `id`='$id'");
+$updateProfile = mysqli_query($conn, "UPDATE `user` SET `photo`='$photo',`nama`='$nama',`email`='$email',`no_hp`='$no_hp',`username`='$username',`password`='$password',`created_at`='$created_at',`updated_at`='$updated_at' WHERE `id`='$idUser'");
 
-if ($addDataService) {
-    $_SESSION['status-info'] = "Data Berhasil dimasukan";
+if ($updateProfile) {
+    $_SESSION['status-info'] = "Profile Berhasil Diupdate";
 } else {
-    $_SESSION['status-fail'] = "Data Tidak Berhasil Ditambahkan";
+    $_SESSION['status-info'] = "Profile Gagal Diupdate";
 }
+
 
 function upload()
 {
@@ -58,10 +62,9 @@ function upload()
     }
 
     // lolos pengecekan
-    move_uploaded_file($tmpName, "../../assets/img/image-content/" . $namaFile);
+    move_uploaded_file($tmpName, "../../assets/img/img-profile/" . $namaFile);
 
 	return $namaFile;
 }
-
-header("Location: ../../dataService.php");
+header("Location:../../profile.php");
 ?>

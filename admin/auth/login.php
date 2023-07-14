@@ -14,6 +14,7 @@ if (isset($_POST['login'])) {
     while ($result = mysqli_fetch_array($cekDataUser)) {
         if ($username == $result['username_user'] && $password == $result['password_user']) {
             $loggedIn = true;
+            $_SESSION['id_user'] = $result['id_user'];
             $_SESSION['nama'] = $result['nama_user'];
             $_SESSION['email'] = $result['email_user'];
             $_SESSION['no_hp'] = $result['no_hp_user'];

@@ -12,10 +12,14 @@ print_r($route)
 						<li class="list-divider"></li>
 						<li> <a href="dataService.php"><i class="fas fa-tools"></i> <span>Service</span></a> </li>
 						<li class="list-divider"></li>
-						<li> <a href="dataSepatu.php"><i class="fas fa-tools"></i> <span>Data Pesanan</span></a> </li>
+						<li> <a href="dataPemesanan.php"><i class="fas fa-suitcase"></i> <span>Data Pesanan</span></a> </li>
 						<li class="list-divider"></li>
 						<li> <a href="dataSepatu.php"><i class="fas fa-shoe-prints"></i> <span>Sepatu</span></a> </li>
 						<li class="list-divider"></li>
+						<?php
+						if ($_SESSION['level'] == 'admin') {
+							
+						?>
 						<li class="submenu"> <a href="#" class=""><i class="fas fa-user"></i> <span> User </span> <span class="menu-arrow"></span></a>
 							<ul class="submenu_class" style="<?php if($route ==='dataRole.php'|$route ==='dataUser.php') echo'display:block;'?>">
 								<li>
@@ -43,7 +47,7 @@ print_r($route)
 								
 							</ul>
 						</li>
-						
+						<?php }?>
 						
 					</ul>
 				</div>

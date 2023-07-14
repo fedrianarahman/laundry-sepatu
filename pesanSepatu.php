@@ -131,35 +131,42 @@ $id = $_GET['id'];
                   
                     <div class="group-product-detail">
                         <h5 class="name-product-detail">Data detail pemesan wajib diisi : </h5>
-                        <form action="./controller/booking/add.php" method="POST">
+                        <form action="./controller/pemesanan/add.php" method="POST">
                             <div class="row">
                                 <div class="mb-3 col-md-6">
                                     <label for="" class="mb-2">*Nama</label>
                                    
-                                    <input type="text" class="form-control" id="nama" required name="nama_penyewa" autofocus
+                                    <input type="text" class="form-control" id="nama" required name="nama" autofocus
                                         placeholder="Nama">
+                                    <input hidden type="text" class="form-control" id="nama" required name="jenis_layanan" autofocus
+                                        placeholder="Nama" value="<?php echo $id?>">
 
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="" class="mb-2">No Telpon</label>
-                                    <input type="text" class="form-control" id="nophone" required name="no_hp_penyewa"
+                                    <input type="text" class="form-control" id="nophone" required name="no_hp"
+                                        placeholder="Phone">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label for="" class="mb-2">Email</label>
+                                    <input type="email" class="form-control" id="nophone" required name="email"
                                         placeholder="Phone">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="" class="mb-2">Jenis Sepatu</label>
-                                    <input type="text" class="form-control" id="nophone" required name="no_hp_penyewa"
+                                    <input type="text" class="form-control" id="nophone" required name="jenis_sepatu"
                                         placeholder="Jenis Sepatu">
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="" class="mb-2">Warna Sepatu</label>
-                                    <input type="text" class="form-control" id="nophone" required name="no_hp_penyewa"
+                                    <input type="text" class="form-control" id="nophone" required name="warna_sepatu"
                                         placeholder="Warna">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <a class="btn btn-cs-order" href="./index.php">Cancel</a>
-                                    <a class="btn btn-primary float-end" href="./pemesananSelesai.php" type="submit">Continue</a>
+                                    <button class="btn btn-primary float-end"  type="submit">Continue</button>
                                 </div>
                             </div>
                         </form>
@@ -200,6 +207,7 @@ $id = $_GET['id'];
         crossorigin="anonymous"></script>
     <!-- script fontawesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="./assets/js/script2.js"></script>
 </body>
 
 </html>

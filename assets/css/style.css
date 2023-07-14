@@ -105,13 +105,6 @@
     background-repeat: no-repeat;
     padding-left: 20px;
     margin-bottom: 150px;
-    text-decoration: none;
-}
-.order-title{
-    margin-bottom: 100px;
-}
-.service a{
-    text-decoration: none;
 }
 
 .service h2 {
@@ -163,26 +156,31 @@
     padding-top: 50px;
 }
 
-.form-check-tracking {
-    /* display: flex;
+form {
+    display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center; */
+    text-align: center;
     /* height: 100vh; Menyesuaikan tinggi form dengan tinggi viewport */
 }
 
 .input-group {
-    /* display: flex;
+    display: flex;
     justify-content: center;
-    align-items: center; */
+    align-items: center;
 }
-
+.form-input-tracking{
+    height: 70px;
+    width: 500px;
+    background: #FF7F0A;
+    position: relative;
+}
 .input-custom {
-    /* border: 1px solid #D9D9D9;
+    border: 1px solid #D9D9D9;
     background: #FFF;
     width: 578px;
     height: 50px;
-    padding-left: 15px; */
+    padding-left: 15px;
 }
 
 .btn-shoes-progress {

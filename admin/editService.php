@@ -64,7 +64,7 @@ $id = $_GET['id'];
                                             ?>
 
                                                 <div class="row formtype">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>File Upload</label>
                                                             <div class="custom-file mb-3">
@@ -73,7 +73,7 @@ $id = $_GET['id'];
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Judul</label>
                                                             <input hidden class="form-control" type="text" name="id" value="<?php echo $data['id'] ?>">
@@ -82,10 +82,16 @@ $id = $_GET['id'];
                                                             <input class="form-control" type="text" name="judul" value="<?php echo $data['judul'] ?>">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Sub Judul</label>
                                                             <input class="form-control" type="text" name="subjudul" value="<?php echo $data['subJudul'] ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Harga</label>
+                                                            <input class="form-control" type="number" name="harga" value="<?php echo $data['harga'] ?>">
                                                         </div>
                                                     </div>
                                                 </div>

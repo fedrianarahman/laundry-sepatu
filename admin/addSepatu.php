@@ -6,6 +6,7 @@ if (!isset($_SESSION['nama'])) {
     exit();
 }
 
+$id = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
@@ -56,30 +57,36 @@ if (!isset($_SESSION['nama'])) {
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <form method="POST" action="./controller/sepatu/add.php" enctype="multipart/form-data">
+                                            <?php
+                                            // getDataPemesanan
+                                            $getData = mysqli_query($conn, "SELECT * FROM pemesanan WHERE id = '$id'");
+                                            while ($dataPemesanan = mysqli_fetch_array($getData)) {
+                                            
+                                            ?>
                                             <div class="row formtype">
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Nama Pemilik</label>
-                                                        <input class="form-control" type="text" name="nama_pemilik">
+                                                        <input class="form-control" type="text" name="nama_pemilik" value="<?php echo $dataPemesanan['nama_pemesan']?>" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>NO HP Pemilik</label>
-                                                        <input class="form-control" type="text" name="no_hp_pemilik">
+                                                        <input class="form-control" type="text" name="no_hp_pemilik" value="<?php echo $dataPemesanan['no_hp_pemesan']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Jenis Sepatu</label>
-                                                        <input class="form-control" type="text" name="jenis_sepatu">
+                                                        <input class="form-control" type="text" name="jenis_sepatu" value="<?php echo $dataPemesanan['jenis_sepatu']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Warna</label>
-                                                        <input class="form-control" type="text" name="warna">
+                                                        <input class="form-control" type="text" name="warna" value="<?php echo $dataPemesanan['warna_sepatu']?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -91,7 +98,9 @@ if (!isset($_SESSION['nama'])) {
                                                             $ambildataService = mysqli_query($conn, "SELECT * FROM service");
                                                             while ($dataService = mysqli_fetch_array($ambildataService)) {
                                                             ?>
-                                                                <option value="<?php echo $dataService['id'] ?>"><?php echo ucwords($dataService['judul']) ?></option>
+                                                                <option value="<?php echo $dataService['id'] ?>" <?php if ($dataPemesanan['layana_id']== $dataService['id']) {
+                                                                    echo 'selected';
+                                                                }?>><?php echo ucwords($dataService['judul']) ?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -112,6 +121,7 @@ if (!isset($_SESSION['nama'])) {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php }?>
                                             <a href="./dataSepatu.php" class="btn btn-warning text-white">Kembali</a>
                                             <button class="btn btn-primary " style="float: right;">Save</button>
                                             <div class="row">

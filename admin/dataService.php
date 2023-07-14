@@ -99,6 +99,7 @@ if (!isset($_SESSION['nama'])) {
                 <div class="card-body">
                   <h4 class="card-title text-center"><?php echo ucwords($data['judul']) ?></h4>
                   <p class="card-text mt-3 text-center"><?php echo $data['subJudul'] ?></p>
+                  <p class="card-text mt-3 text-center">Rp <?php echo number_format($data['harga'], 0, ',', '.') ?></p>
                   <a href="./editService.php?id=<?php echo $data['id'] ?>" class="btn btn-info">Edit</a>
                   <a href="./controller/service/delete.php?id=<?php echo $data['id'] ?>" class="btn btn-danger">Hapus</a>
                 </div>

@@ -1,1 +1,1 @@
-<h3 class="page-title mt-3">Hello, <?php echo $_SESSION['level']?></h3>
+<h3 class="page-title mt-3">Hello, <?php echo $_SESSION['nama']?></h3>

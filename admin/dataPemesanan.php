@@ -42,7 +42,7 @@ if (!isset($_SESSION['nama'])) {
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-12 mt-5">
-                            <?php include './include/welcomeText.php'?>
+                            <?php include './include/welcomeText.php' ?>
                         </div>
                     </div>
                 </div>
@@ -91,8 +91,8 @@ if (!isset($_SESSION['nama'])) {
                         ?>
                         <div class="card card-table flex-fill">
                             <div class="card-header ">
-                                <h4 class="card-title float-left mt-2">Data Sepatu <?php echo "";?></h4>
-                                <a href="addSepatu.php" class="btn btn-primary float-right veiwbutton"><i class="fas mr-2 fa-plus"></i>Tambah data</a>
+                                <h4 class="card-title float-left mt-2">Data Pemesanan</h4>
+                                <!-- <a href="addSepatu.php" class="btn btn-primary float-right veiwbutton"><i class="fas mr-2 fa-plus"></i>Tambah data</a> -->
                                 <!-- <button type="button" class="btn btn-primary float-right veiwbutton"></button> -->
                             </div>
                             <div class="card-body">
@@ -101,56 +101,45 @@ if (!isset($_SESSION['nama'])) {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Kode Sepatu</th>
-                                                <th>Pemilik</th>
+                                                <th>Nama </th>
+                                                <th>Email</th>
                                                 <th>NO HP</th>
                                                 <th>Merk Sepatu</th>
                                                 <th>Warna</th>
                                                 <th>Jenis Layanan</th>
-                                                <th>Status</th>
+                                                <th>Status Pemesanan</th>
+                                                <th>Tanggal Pemesanan</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ambilDataSepatu = mysqli_query($conn, " SELECT p1.*, service.judul
-                                            FROM progress_sepatu p1
-                                            INNER JOIN service ON service.id = p1.jenis_layanan
-                                            LEFT JOIN progress_sepatu p2 ON p1.kode_sepatu = p2.kode_sepatu AND p1.id < p2.id
-                                            WHERE p2.id IS NULL");
+                                            $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pemesanan,pemesanan.nama_pemesan AS nama_pemesan,pemesanan.email_pemesan AS email_pemesan,pemesanan.no_hp_pemesan AS no_hp_pemesan,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS created_at,pemesanan.status AS status,service.judul AS judul FROM pemesanan INNER JOIN service ON service.id  = pemesanan.layana_id");
                                             $i = 1;
-                                            while ($data = mysqli_fetch_array($ambilDataSepatu)) {
+                                            while ($dataPesanan = mysqli_fetch_array($getDataPemesanan)) {
                                             ?>
                                                 <tr>
                                                     <td><?php echo $i ?></td>
-                                                    <td><?php echo $data['kode_sepatu'] ?></td>
-                                                    <td><?php echo $data['pemilik'] ?></td>
-                                                    <td><?php echo $data['no_hp_pemilik'] ?></td>
-                                                    <td><?php echo $data['merk_sepatu'] ?></td>
-                                                    <td><?php echo $data['warna'] ?></td>
-                                                    <td><?php echo $data['judul'] ?></td>
+                                                    <td><?php echo $dataPesanan['nama_pemesan'] ?></td>
+                                                    <td><?php echo $dataPesanan['email_pemesan'] ?></td>
+                                                    <td><?php echo $dataPesanan['no_hp_pemesan'] ?></td>
+                                                    <td><?php echo $dataPesanan['jenis_sepatu'] ?></td>
+                                                    <td><?php echo $dataPesanan['warna_sepatu'] ?></td>
+                                                    <td><?php echo $dataPesanan['judul'] ?></td>
+                                                    <td><span class=" <?php if ($dataPesanan['status']=='P') {
+                                                          echo "badge light badge-warning text-white";  
+                                                        }else{
+                                                            echo 'alert-success text-success';
+                                                        }   ?>">
+                                                        <?php if ($dataPesanan['status']=='P') {
+                                                          echo "Pending";  
+                                                        }else{
+                                                            echo 'Accepted';
+                                                        }   ?></span></td>
+                                                    <td><?php echo $dataPesanan['created_at'] ?></td>
                                                     <td>
-                                                        <div class="actions">
-                                                            <a href="detailProses.php?kode_spt=<?php echo $data['kode_sepatu'] ?>" class="
-                                                            <?php
-                                                            if ($data['status']=="finish") {
-                                                                echo 'badge badge-danger text-white ';
-                                                            } else {
-                                                                echo 'badge badge-warning text-white ';
-                                                            }
-                                                            
-                                                            ?>">
-                                                                <?php
-                                                                if ($data['status'] == 'finish') {
-                                                                    echo "Finish !";
-                                                                } else {
-                                                                    echo "prosess";
-                                                                } ?></a>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <a href="./editSepatu.php?id=<?php echo $data['kode_sepatu'] ?>" class="btn btn-primary" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
-                                                        <a href="./controller/sepatu/delete.php?id=<?php echo $data['kode_sepatu'] ?>" class="btn btn-danger" data-toggle="tooltip" title="delete"><i class="fas fa-trash-alt"></i></a>
+                                                        <a href="./detailPemesanan.php?id=<?php echo $dataPesanan['id_pemesanan']?>" class="btn btn-warning" data-toggle="tooltip" title="View"><i class="fas fa-eye"></i></a>
+                                                        <!-- <a href="#" class="btn btn-danger" data-toggle="tooltip" title="delete"><i class="fas fa-trash-alt"></i></a> -->
                                                     </td>
                                                 </tr>
                                                 <?php $i++ ?>
