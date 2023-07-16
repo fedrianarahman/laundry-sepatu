@@ -50,7 +50,46 @@ $id = $_GET['id'];
 
 
                 <div class="row">
-                    <div class="col-md-12 d-flex">
+                    <div class="col-md-12 ">
+                    <?php
+                        if (isset($_SESSION['status-info'])) {
+                            echo '
+                            <div
+                            class="alert alert-success alert-dismissible fade show"
+                            role="alert"
+                            >
+                            <strong>Success!</strong> 
+                            <a href="#" class="alert-link">message</a>' . $_SESSION['status-info'] . '
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>';
+                            unset($_SESSION['status-info']);
+                        }
+                        if (isset($_SESSION['status-fail'])) {
+                            echo '<div
+                            class="alert alert-danger alert-dismissible fade show"
+                            role="alert"
+                          >
+                            <strong>Fail!</strong> 
+                            <a href="#" class="alert-link">message</a>' . $_SESSION['status-fail'] . '
+                            <button
+                              type="button"
+                              class="close"
+                              data-dismiss="alert"
+                              aria-label="Close"
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>';
+                            unset($_SESSION['status-fail']);
+                        }
+                        ?>
                         <div class="card rounded flex-fill">
 
                             <div class="card-body">
@@ -60,10 +99,15 @@ $id = $_GET['id'];
                                             <?php
                                             // getDataPemesanan
                                             $getData = mysqli_query($conn, "SELECT * FROM pemesanan WHERE id = '$id'");
-                                            while ($dataPemesanan = mysqli_fetch_array($getData)) {
                                             
+                                            $cekData = mysqli_num_rows($getData);
+                                            
+                                            if ($cekData > 0) {
+                                                
+                                                while ($dataPemesanan = mysqli_fetch_array($getData)) {
+                                                
                                             ?>
-                                            <div class="row formtype">
+                                             <div class="row formtype">
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
@@ -107,6 +151,64 @@ $id = $_GET['id'];
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label class="display-block"> Status</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Antrian" checked>
+                                                        <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Antrian</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status" id="blog_inactive" value="Sepatu Dalam Proses Pencucian">
+                                                        <label class="form-check-label" for="blog_inactive">
+                                                            Sepatu Dalam Proses Pencucian
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <?php }?>
+                                            <?php }else{?>
+                                                <div class="row formtype">
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Nama Pemilik</label>
+                                                        <input class="form-control" type="text" name="nama_pemilik" value="" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>NO HP Pemilik</label>
+                                                        <input class="form-control" type="text" name="no_hp_pemilik" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Jenis Sepatu</label>
+                                                        <input class="form-control" type="text" name="jenis_sepatu" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Warna</label>
+                                                        <input class="form-control" type="text" name="warna" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Layanan</label>
+                                                        <select class="form-control" name="jenis_layanan">
+                                                            <option>Pilih</option>
+                                                            <?php
+                                                            $ambildataService = mysqli_query($conn, "SELECT * FROM service");
+                                                            while ($dataService = mysqli_fetch_array($ambildataService)) {
+                                                            ?>
+                                                                <option value="<?php echo $dataService['id'] ?>" ><?php echo ucwords($dataService['judul']) ?>| Rp <?php echo number_format($dataService['harga'], 0, ',', '.') ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label class="display-block">Blog Status</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
@@ -120,7 +222,7 @@ $id = $_GET['id'];
                                                         </label>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                </div>
                                             <?php }?>
                                             <a href="./dataSepatu.php" class="btn btn-warning text-white">Kembali</a>
                                             <button class="btn btn-primary " style="float: right;">Save</button>

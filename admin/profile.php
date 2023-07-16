@@ -24,7 +24,7 @@ $idUser = $_SESSION['id_user'];
 	<link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
 	<link rel="stylesheet" href="assets/plugins/morris/morris.css">
 	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="./assets//css/profile.css">
+	<link rel="stylesheet" href="./assets/css/profile.css">
 </head>
 <php ?>
 
