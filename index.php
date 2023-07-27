@@ -76,6 +76,9 @@ include './controller/conn.php';
     .my-float {
       margin-top: 10px;
     }
+    #about,#service,#contact {
+  scroll-margin-top: 100px; /* Sesuaikan dengan ukuran tinggi navbar */
+}
   </style>
 </head>
 
@@ -122,9 +125,10 @@ include './controller/conn.php';
   <!-- whatsapp icon -->
 
   <!-- about -->
+  
   <section class="about" id="about">
     <div class="container">
-      <div class="row">
+      <div class="row" >
         <div class="col-md-6">
           <div class="img-wrapper">
             <img class="img-first" src="./assets/img/shoes-2.png" alt="" />
@@ -132,7 +136,7 @@ include './controller/conn.php';
         </div>
         <div class="col-md-6">
           <div class="about-content">
-            <h2 class="about-title">About</h2>
+            <h2 class="about-title" >About</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
               aperiam est eaque quia impedit fuga ad repellendus totam
@@ -195,27 +199,43 @@ include './controller/conn.php';
 
           <div class="time-line-wrapper">
             <div class="timeline p-4 block mb-4">
-              <?php
-              if (isset($_POST['submit'])) {
-                $kode_spt = $_POST['kode_sepatu'];
-                $getStatus = mysqli_query($conn, "SELECT status, IFNULL(created_at, updated_at) AS tanggal FROM progress_sepatu WHERE kode_sepatu = '$kode_spt'");
-
-                if (mysqli_num_rows($getStatus) > 0) {
+             <?php
+             if (isset($_POST['submit'])) {
+              $kode_spt = $_POST['kode_sepatu'];
+              $getStatus = mysqli_query($conn, "SELECT status, IFNULL(created_at, updated_at) AS tanggal FROM progress_sepatu WHERE kode_sepatu = '$kode_spt'");
+          
+              if (mysqli_num_rows($getStatus) > 0) {
                   while ($r = mysqli_fetch_array($getStatus)) {
-                    echo '<div class="tl-item active">
-                    <div class="tl-dot"></div>
-                    <div class="tl-content">
-                      <div class="">' . $r['status'] . '</div>
-                      <div class="tl-date text-muted mt-1">' . $r['tanggal'] . '</div>
-                    </div>
-                  </div>';
+                      $tanggal = $r['tanggal'];
+                      $hari = date('l', strtotime($tanggal));
+          
+                      echo '<div class="tl-item active">
+                              <div class="tl-dot ';
+                      if ($r['status'] == 'finish') {
+                          echo 'tl-dot-finish';
+                      } else {
+                          echo 'tl-dot';
+                      }
+                      echo '"></div>
+                              <div class="tl-content">
+                                <div>';
+                      if ($r['status'] == "finish") {
+                          echo 'Sepatu Sudah Selesai';
+                      } else {
+                          echo $r['status'];
+                      }
+                      echo '</div>
+                                <div class="tl-date text-muted mt-1">' . $hari . ', ' . $tanggal . '</div>
+                              </div>
+                          </div>';
                   }
-                  
-                } else {
+          
+              } else {
                   echo '<script>alert("Tidak Ada Pesanan")</script>';
-                }
               }
-              ?>
+          }
+          
+             ?>
             </div>
           </div>
 

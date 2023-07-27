@@ -15,3 +15,10 @@
 8. mysql => databse
 
 
+#yang belum
+1. Halaman Registrasi
+2. Halaman Login 
+3. Halaman Pemabayaran
+4. Halaman 
+
+

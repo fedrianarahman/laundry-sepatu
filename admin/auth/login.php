@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 	<title>Hotel Dashboard Template</title>
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/logo.png">
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../assets/plugins/fontawesome/css/fontawesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../assets/plugins/fontawesome/css/all.min.css">
@@ -57,7 +57,7 @@ if (isset($_POST['login'])) {
 			<div class="container">
 				<div class="loginbox">
 					<div class="login-left">
-                        <img class="img-fluid" src="" alt="Logo">
+                        <img class="img-fluid" src="../assets/img/logo.png" alt="Logo">
                      </div>
 					<div class="login-right">
 						<div class="login-right-wrap">

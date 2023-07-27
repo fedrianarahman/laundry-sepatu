@@ -56,7 +56,77 @@ if ($addProgressSepatu) {
 
         $mail->isHTML(true);
         $mail->Subject = "Pembayaran Layanan Treatment shoeslab Terkonfirmasi";
-        $mail->Body = "Hi $nama_pemilik, Terimakasih Telah Memilih shoeslab sebagai layanan treatment sepatu anda, Pembayaran Anda Pemesanan Anda Telah Diterima, Berikut Detail : <br/> Nama Pemilik  : $nama_pemilik <br/> Jenis Sepatu : $jenis_sepatu <br/> Warna Sepatu  : $warna_sepatu<br/> Kode Sepatu : $kode_barang ";
+        // $mail->Body = "Hi $nama_pemilik, Terimakasih Telah Memilih shoeslab sebagai layanan treatment sepatu anda, Pembayaran Anda Pemesanan Anda Telah Diterima, Berikut Detail : <br/> Nama Pemilik  : $nama_pemilik <br/> Jenis Sepatu : $jenis_sepatu <br/> Warna Sepatu  : $warna_sepatu<br/> Kode Sepatu : $kode_barang ";
+        $mail->Body ='
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title></title>
+            <style>
+                /* Masukkan CSS Anda di sini */
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #ddd;
+                }
+                .container {
+                    padding: 20px;
+                    border-radius: 12px;
+                    background: #fff;
+                    width: 296px;
+                    height: 464px;
+                    box-shadow: 0px 4px 16px 0px rgba(114, 164, 165, 0.35);
+                }
+                .header-img {
+                    display: block;
+                    margin: auto;
+                    width : 141px;
+                    height : 141px;
+                }
+                h6 {
+                    margin-top: 10px;
+                    text-align:center;
+                    color: #152C5B;
+                    font-family: Poppins;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    margin-bottom:15px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <img class="header-img" src="https://img.freepik.com/free-vector/product-quality-concept-illustration_114360-7301.jpg?w=740&t=st=1690460260~exp=1690460860~hmac=12fd3e224842421df5c44194f0d02d4dfa9a75091a2263e20763b3af1f3f3e24" />
+                <h6>Pembayaran Terkonfirmasi !</h6>
+                <table>
+                    <tr>
+                    <td>Nama Pemilik</td>
+                    <td>:</td>
+                    <td>'.$nama_pemilik.'</td>
+                    </tr>
+                    <tr>
+                    <td>Jenis Sepatu</td>
+                    <td>:</td>
+                    <td>'.$jenis_sepatu.'</td>
+                    </tr>
+                    <tr>
+                    <td>Warna Sepatu</td>
+                    <td>:</td>
+                    <td>'.$warna_sepatu.'</td>
+                    </tr>
+                    <tr>
+                    <td>Kode Sepatu</td>
+                    <td>:</td>
+                    <td>'.$kode_barang.'</td>
+                    </tr>
+                </table>
+            </div>
+        </body>
+        </html>
+    ';
         $mail->AltBody = '';
 
         $mail->send();
@@ -69,5 +139,3 @@ if ($addProgressSepatu) {
 
 header("Location:../../dataSepatu.php");
 exit();
-
-?>
