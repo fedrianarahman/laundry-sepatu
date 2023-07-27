@@ -114,7 +114,7 @@ include './controller/conn.php';
   <!-- end hero -->
 
   <!-- whatsapp icon -->
-  <a class="whats-app" href="#" target="_blank">
+  <a class="whats-app" href="https://api.whatsapp.com/send?phone=085864931764" target="_blank">
     <i class="fa-brands  fa-whatsapp my-float"></i>
   </a>
   <!-- whatsapp icon -->
@@ -239,22 +239,24 @@ include './controller/conn.php';
       <div class="row">
         <div class="col-md-6">
           <h2>Contact</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quidem ipsum itaque exercitationem fugiat sunt officia, ipsa ullam voluptatem nihil. Harum voluptates id repudiandae alias fuga, illum pariatur cupiditate sed?</p>
+          <p>adalah halaman kontak kami yang memungkinkan pelanggan, mitra, dan pengunjung situs untuk menghubungi kami dengan pertanyaan, permintaan informasi, atau memberikan umpan balik. Kami senang mendengar dari Anda dan berkomitmen untuk memberikan layanan pelanggan terbaik.</p>
           <div class="icon">
             <div class="first-icon">
+              <a  href="https://api.whatsapp.com/send?phone=085864931764" target="_blank" style="text-decoration: none;">
               <i class="fa-brands  fa-whatsapp"></i>
               <span>089721543217</span>
+              </a>
             </div>
             <div class="second-icon">
-              <i class="fa-brands fa-instagram"></i>
-              <span>089721543217</span>
+             <a href="https://www.instagram.com/_shoeslab/" target="_blank" style="text-decoration: none;"> <i class="fa-brands fa-instagram"></i>
+              <span>@_shoeslab</span></a>
             </div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="card">
             <div class="card-body">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31708.71568668405!2d106.6085252682551!3d-6.573383645736278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69d9ec9e7c1e2b%3A0x401576d14fed440!2sLeuwiliang%2C%20Kec.%20Leuwiliang%2C%20Kabupaten%20Bogor%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1687663290204!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.042357073929!2d107.620019!3d-6.885529999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e70bca5c7575%3A0xec360a76f4310d0b!2sShoeslab!5e0!3m2!1sen!2sid!4v1690320208388!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
         </div>
@@ -346,12 +348,14 @@ include './controller/conn.php';
         <div class="col-md-6">
           <div class="icon float-end">
             <div class="first-icon">
+            <a  href="https://api.whatsapp.com/send?phone=085864931764" target="_blank" style="text-decoration: none;">
               <i class="fa-brands  fa-whatsapp"></i>
               <span>089721543217</span>
+              </a>
             </div>
             <div class="second-icon">
-              <i class="fa-brands fa-instagram"></i>
-              <span>089721543217</span>
+            <a href="https://www.instagram.com/_shoeslab/" target="_blank" style="text-decoration: none;"> <i class="fa-brands fa-instagram"></i>
+              <span>@_shoeslab</span></a>
             </div>
           </div>
         </div>

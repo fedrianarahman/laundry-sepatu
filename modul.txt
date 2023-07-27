@@ -4,3 +4,14 @@
 3. 
 
 
+#Tech
+1. php native
+2. html
+3. css 
+4. bootstrap => frame work css
+5. php mailer => library php yang digunakan untuk mengirimkan pesan melalui email
+6. xampp => 
+7. vscode => 
+8. mysql => databse
+
+

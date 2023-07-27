@@ -2,7 +2,7 @@
         class="navbar navbar-expand-lg justify-content-between  shadow-sm bg-transparent  fixed-top mb-4"
       >
         <div class="container">
-          <a class="navbar-brand" href="#">Logo</a>
+          <a class="navbar-brand" href="#"><img src="./assets/img/logo.png" width="50px" alt=""></a>
           <button
             class="navbar-toggler"
             type="button"
@@ -24,9 +24,6 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#service">Service</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#testimonial">Product</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>

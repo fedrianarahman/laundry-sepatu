@@ -123,6 +123,12 @@ $id = $_GET['id'];
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input class="form-control" type="text" name="email_pemesan" value="<?php echo $dataPemesanan['email_pemesan']?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label>Jenis Sepatu</label>
                                                         <input class="form-control" type="text" name="jenis_sepatu" value="<?php echo $dataPemesanan['jenis_sepatu']?>">
                                                     </div>
