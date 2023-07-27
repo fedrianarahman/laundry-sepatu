@@ -100,9 +100,11 @@ include './controller/conn.php';
               kami menghadirkan solusi khusus untuk menjaga sepatu Anda tetap
               bersih, segar, dan tahan lama.
             </p>
-            <button class="btn-cek-pesanan">
+           <a href="#check-shoes-progress" style="text-decoration: none;">
+           <button class="btn-cek-pesanan">
               Cek Pesanan Saya <i class="fa-solid fa-arrow-right"></i>
             </button>
+           </a>
           </div>
           <div class="col-md-6">
             <img class="img-first" src="./assets/img/shoes.png" alt="" />
@@ -179,7 +181,7 @@ include './controller/conn.php';
   <!-- end service -->
 
   <!-- check shoes progress -->
-  <section class="check-shoes-progress">
+  <section class="check-shoes-progress" id="check-shoes-progress">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 ">
