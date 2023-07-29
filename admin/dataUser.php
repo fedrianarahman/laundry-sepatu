@@ -118,7 +118,7 @@
                                            ?>
                                             <tr>
                                                 <td><?php echo $i;?></td>
-                                                <td><span class="avatar avatar-sm mr-2"><img src="./assets/img/img-profile/<?php echo $dataUser['photo']?>" class="avatar-img rounded-circle" alt=""></span></td>
+                                                <td><span class="avatar avatar-sm mr-2"><img src="./assets/img/img-profile/<?php echo $data['photo']?>" class="avatar-img rounded-circle" alt=""></span></td>
                                                 <td><?php echo $data['nama']?></td>
                                                 <td><?php echo $data['email']?></td>
                                                 <td><?php echo $data['no_hp']?></td>
