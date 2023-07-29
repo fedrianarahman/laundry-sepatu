@@ -112,7 +112,7 @@
                                         <tbody>
                                            <?php
                                             //mengambil data user
-                                            $query = mysqli_query($conn, "SELECT user.id As id_user,user.nama AS nama, user.email AS email, user.no_hp As no_hp, role.nama_role AS nama_role FROM user INNER JOIN role ON role.id = user.role");
+                                            $query = mysqli_query($conn, "SELECT user.id As id_user,user.nama AS nama, user.email AS email,user.photo AS photo, user.no_hp As no_hp, role.nama_role AS nama_role FROM user INNER JOIN role ON role.id = user.role");
                                             $i = 1;
                                             while ($data = mysqli_fetch_array($query)) {
                                            ?>
