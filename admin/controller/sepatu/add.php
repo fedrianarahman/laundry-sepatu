@@ -32,9 +32,12 @@ $jenis_layanan = $_POST['jenis_layanan'];
 $status = $_POST['status'];
 $created_at = date('Y-m-d H:i:s');
 $emailPemesanan = $_POST['email_pemesan'];
-
+// Tambahan
+$idPenyewa = $_POST['id_penyewa'];
+$status_sepatu = "at store";
+$merk_sepatu = $_POST['merk_sepatu'];
 // menambahkan ke dalam database
-$addProgressSepatu = mysqli_query($conn, "INSERT INTO `progress_sepatu`(`id`, `kode_sepatu`, `pemilik`, `no_hp_pemilik`, `merk_sepatu`, `warna`, `jenis_layanan`, `status`, `created_at`, `updated_at`) VALUES ('','$kode_barang','$nama_pemilik','$no_hp_pemilik','$jenis_sepatu','$warna_sepatu','$jenis_layanan','$status','$created_at','')");
+$addProgressSepatu = mysqli_query($conn, "INSERT INTO `progress_sepatu`(`id`, `kode_sepatu`,`userId`, `pemilik`, `no_hp_pemilik`, `merk_sepatu`, `jenis_sepatu`,`warna`, `jenis_layanan`, `status`, `created_at`, `status_sepatu`) VALUES ('','$kode_barang','$idPenyewa','$nama_pemilik','$no_hp_pemilik','$merk_sepatu','$jenis_sepatu','$warna_sepatu','$jenis_layanan','$status','$created_at','$status_sepatu')");
 
 
 if ($addProgressSepatu) {

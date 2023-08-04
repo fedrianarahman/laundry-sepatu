@@ -117,8 +117,8 @@ include './controller/conn.php';
                     <div class="col-md-12 text-center">
                         <img src="./assets/img/order-success.png" class="image-cs-success" width="200" alt="">
                         <h1 class="popup-title-h1 mb-2">Selamat Pemesanan Berhasil</h1>
-                        <p class="paraf-description-p mb-2">Silahkan Datang Ke Store untuk transaksi pembayaran</p>
-                        <a href="./index.php">
+                        <p class="paraf-description-p mb-2">Silahkan Antar Sepatu Ke Store</p>
+                        <a href="./order_history.php">
                         <button class="btn btn-cs-order">oke</button>
                         </a>
                     </div>

@@ -6,6 +6,6 @@ window.addEventListener("scroll", () => {
     } else {
       navbar.classList.remove("bg-white");
     }
-    console.log("line 8", navbar);
+    // console.log("line 8", navbar);
   });
   

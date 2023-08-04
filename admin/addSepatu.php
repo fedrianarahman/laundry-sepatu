@@ -113,6 +113,7 @@ $id = $_GET['id'];
                                                     <div class="form-group">
                                                         <label>Nama Pemilik</label>
                                                         <input class="form-control" type="text" name="nama_pemilik" value="<?php echo $dataPemesanan['nama_pemesan']?>" >
+                                                        <input class="form-control" hidden type="text" name="id_penyewa" value="<?php echo $dataPemesanan['userId']?>" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -129,6 +130,12 @@ $id = $_GET['id'];
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
+                                                        <label>Merk Sepatu</label>
+                                                        <input class="form-control" type="text" name="merk_sepatu" value="<?php echo $dataPemesanan['merk_sepatu']?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
                                                         <label>Jenis Sepatu</label>
                                                         <input class="form-control" type="text" name="jenis_sepatu" value="<?php echo $dataPemesanan['jenis_sepatu']?>">
                                                     </div>
@@ -141,7 +148,7 @@ $id = $_GET['id'];
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Role</label>
+                                                        <label>Layanan</label>
                                                         <select class="form-control" name="jenis_layanan">
                                                             <option>Pilih</option>
                                                             <?php
@@ -159,12 +166,12 @@ $id = $_GET['id'];
                                                     <div class="form-group">
                                                         <label class="display-block"> Status</label>
                                                     </div>
-                                                    <div class="form-check form-check-inline">
+                                                    <!-- <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Antrian" checked>
                                                         <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Antrian</label>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="status" id="blog_inactive" value="Sepatu Dalam Proses Pencucian">
+                                                        <input class="form-check-input" type="radio" name="status" id="blog_inactive" value="Sepatu Dalam Proses Pencucian" checked>
                                                         <label class="form-check-label" for="blog_inactive">
                                                             Sepatu Dalam Proses Pencucian
                                                         </label>

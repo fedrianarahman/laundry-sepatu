@@ -26,6 +26,25 @@ if (!isset($_SESSION['nama'])) {
     <link rel="stylesheet" href="./assets/data-table/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="./assets/data-table/css/style.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .badge-custom {
+            background-color: #ecfae4;
+            color: #68CF29;
+            padding: 3px 10px;
+        }
+
+        .badge-custom-proses {
+            background-color: #ffefee;
+            color: #FF4C41;
+            padding: 3px 10px;
+        }
+
+        .badge-custom-done {
+            background-color: #fff0da;
+            color: #FFAB2D;
+            padding: 3px 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,7 +61,7 @@ if (!isset($_SESSION['nama'])) {
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-12 mt-5">
-                            <?php include './include/welcomeText.php'?>
+                            <?php include './include/welcomeText.php' ?>
                         </div>
                     </div>
                 </div>
@@ -91,7 +110,7 @@ if (!isset($_SESSION['nama'])) {
                         ?>
                         <div class="card card-table flex-fill">
                             <div class="card-header ">
-                                <h4 class="card-title float-left mt-2">Data Sepatu <?php echo "";?></h4>
+                                <h4 class="card-title float-left mt-2">Data Sepatu <?php echo ""; ?></h4>
                                 <a href="addSepatu.php" class="btn btn-primary float-right veiwbutton"><i class="fas mr-2 fa-plus"></i>Tambah data</a>
                                 <!-- <button type="button" class="btn btn-primary float-right veiwbutton"></button> -->
                             </div>
@@ -107,7 +126,8 @@ if (!isset($_SESSION['nama'])) {
                                                 <th>Merk Sepatu</th>
                                                 <th>Warna</th>
                                                 <th>Jenis Layanan</th>
-                                                <th>Status</th>
+                                                <th>Status Pencucian</th>
+                                                <th>Status Sepatu</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -133,12 +153,12 @@ if (!isset($_SESSION['nama'])) {
                                                         <div class="actions">
                                                             <a href="detailProses.php?kode_spt=<?php echo $data['kode_sepatu'] ?>" class="
                                                             <?php
-                                                            if ($data['status']=="finish") {
+                                                            if ($data['status'] == "finish") {
                                                                 echo 'badge badge-danger text-white ';
                                                             } else {
                                                                 echo 'badge badge-warning text-white ';
                                                             }
-                                                            
+
                                                             ?>">
                                                                 <?php
                                                                 if ($data['status'] == 'finish') {
@@ -147,6 +167,17 @@ if (!isset($_SESSION['nama'])) {
                                                                     echo "prosess";
                                                                 } ?></a>
                                                         </div>
+                                                    </td>
+                                                    <td>
+                                                        <?php
+                                                        if ($data['status'] == 'finish' && $data['status_sepatu'] == 'at store') {
+                                                            echo '<a href="./controller/sepatu/pengambilanSepatu.php?kode_sepatu=' . $data['kode_sepatu'] . '"><span class="badge badge-custom-done">pencucian selesai</span></a>';
+                                                        } elseif ($data['status'] == 'finish' && $data['status_sepatu'] != 'at store') {
+                                                            echo '<span class="badge badge-custom">Sudah Diambil</span>';
+                                                        } else {
+                                                            echo '<span class="badge badge-custom-proses">Masih Dalam Pengerjaan</span>';
+                                                        }
+                                                        ?>
                                                     </td>
                                                     <td>
                                                         <a href="./editSepatu.php?id=<?php echo $data['kode_sepatu'] ?>" class="btn btn-primary" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>

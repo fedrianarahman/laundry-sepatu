@@ -57,7 +57,7 @@ $id = $_GET['id'];
                                     <div class="col-lg-12">
                                         <form method="POST" action="./controller/sepatu/add.php" enctype="multipart/form-data">
                                             <?php
-                                            $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pemesanan,pemesanan.layana_id AS layana_id,pemesanan.nama_pemesan AS nama_pemesan,pemesanan.email_pemesan AS email_pemesan,pemesanan.no_hp_pemesan AS no_hp_pemesan,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS created_at,pemesanan.status AS status,service.judul AS judul,service.harga AS harga FROM pemesanan INNER JOIN service ON service.id  = pemesanan.layana_id WHERE pemesanan.id = '$id'");
+                                            $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pemesanan,pemesanan.userId AS id_penyewa,pemesanan.layana_id AS layana_id,pemesanan.nama_pemesan AS nama_pemesan,pemesanan.email_pemesan AS email_pemesan,pemesanan.merk_sepatu AS merk_sepatu,pemesanan.no_hp_pemesan AS no_hp_pemesan,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS created_at,pemesanan.status AS status,service.judul AS judul,service.harga AS harga FROM pemesanan INNER JOIN service ON service.id  = pemesanan.layana_id WHERE pemesanan.id = '$id'");
                                             while ($dataPemesanan = mysqli_fetch_array($getDataPemesanan)) {
 
                                             ?>
@@ -67,12 +67,19 @@ $id = $_GET['id'];
                                                         <div class="form-group">
                                                             <label>Nama Pemilik</label>
                                                             <input class="form-control" type="text" name="nama_pemilik" value="<?php echo $dataPemesanan['nama_pemesan']?>">
+                                                            <input class="form-control" hidden type="text" name="id_penyewa" value="<?php echo $dataPemesanan['id_penyewa']?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>NO HP Pemilik</label>
                                                             <input class="form-control" type="text" name="no_hp_pemilik" value="<?php echo $dataPemesanan['no_hp_pemesan']?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Merk Sepatu</label>
+                                                            <input class="form-control" type="text" name="merk_sepatu" value="<?php echo $dataPemesanan['merk_sepatu']?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -109,7 +116,10 @@ $id = $_GET['id'];
                                                             <input class="form-control" type="text" name="harga" value="Rp <?php echo number_format($dataPemesanan['harga'], 0, ',', '.')?>">
                                                         </div>
                                                     </div>
-                                                    <p>Status Pemesanan : <?php if ($dataPemesanan['status']=='P') {
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                <p>Status Pemesanan : <?php if ($dataPemesanan['status']=='P') {
                                                         echo '<span class="badge light badge-warning text-white">Belum Terkonfirmasi</span>';
                                                     } else {
                                                         echo '<span class="alert-success p-2 text-success font-weight-bold">Terkonfirmasi</span>';

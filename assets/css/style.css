@@ -3,7 +3,7 @@
 .hero {
     background-image: url('../img/background-header.png');
     background-repeat: no-repeat;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
     /* height: 583px; */
 }
 
@@ -63,7 +63,9 @@
 .img-first {
     width: 100%;
 }
-
+.btn-custom{
+    background :red;
+}
 /* about */
 .about {
     /* padding-top: 50px; */

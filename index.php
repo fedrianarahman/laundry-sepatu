@@ -1,8 +1,6 @@
 <?php
 include './controller/conn.php';
-
-
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -76,8 +74,13 @@ include './controller/conn.php';
     .my-float {
       margin-top: 10px;
     }
-    #about,#service,#contact {
+    #about,#service,#contact,#check-shoes-progress {
   scroll-margin-top: 100px; /* Sesuaikan dengan ukuran tinggi navbar */
+}
+.check-shoes-progress-2{
+  background-image: url('./assets/img/bg-cek-pesanan.png');
+    background-repeat: no-repeat;
+    margin-bottom: 150px;
 }
   </style>
 </head>
@@ -123,69 +126,8 @@ include './controller/conn.php';
     <i class="fa-brands  fa-whatsapp my-float"></i>
   </a>
   <!-- whatsapp icon -->
-
-  <!-- about -->
-  
-  <section class="about" id="about">
-    <div class="container">
-      <div class="row" >
-        <div class="col-md-6">
-          <div class="img-wrapper">
-            <img class="img-first" src="./assets/img/shoes-2.png" alt="" />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="about-content">
-            <h2 class="about-title" >About</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-              aperiam est eaque quia impedit fuga ad repellendus totam
-              officia, reiciendis iusto modi incidunt vero ipsam nobis
-              deleniti consequatur dicta mollitia?
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-              aperiam est eaque quia impedit fuga ad repellendus totam
-              officia, reiciendis iusto modi incidunt vero ipsam nobis
-              deleniti consequatur dicta mollitia?
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end about -->
-
-  <!-- service -->
-  <section class="service" id="service">
-    <h2>Service</h2>
-    <div class="container">
-      <div class="row">
-        <?php
-        $query = mysqli_query($conn, "SELECT * FROM service ");
-        while ($dataService = mysqli_fetch_array($query)) {
-
-        ?>
-          <div class="col-md-4">
-            <a href="./pesanSepatu.php?id=<?php echo $dataService['id'] ?>" class="" style="text-decoration: none;">
-              <div class="card border-0 card-service">
-                <div class="card-body">
-                  <img src="./admin/assets/img/image-content/<?php echo $dataService['photo'] ?>" alt="">
-                  <h3><?php echo $dataService['judul'] ?></h3>
-                  <p><?php echo $dataService['subJudul'] ?></p>
-                </div>
-              </div>
-            </a>
-          </div>
-        <?php } ?>
-
-      </div>
-    </div>
-  </section>
-  <!-- end service -->
-
   <!-- check shoes progress -->
-  <section class="check-shoes-progress" id="check-shoes-progress">
+  <section class="check-shoes-progress-2" id="check-shoes-progress">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 ">
@@ -255,37 +197,7 @@ include './controller/conn.php';
   </section>
   <!-- end shoes progress -->
 
-  <!-- contact -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Contact</h2>
-          <p>adalah halaman kontak kami yang memungkinkan pelanggan, mitra, dan pengunjung situs untuk menghubungi kami dengan pertanyaan, permintaan informasi, atau memberikan umpan balik. Kami senang mendengar dari Anda dan berkomitmen untuk memberikan layanan pelanggan terbaik.</p>
-          <div class="icon">
-            <div class="first-icon">
-              <a  href="https://api.whatsapp.com/send?phone=085864931764" target="_blank" style="text-decoration: none;">
-              <i class="fa-brands  fa-whatsapp"></i>
-              <span>089721543217</span>
-              </a>
-            </div>
-            <div class="second-icon">
-             <a href="https://www.instagram.com/_shoeslab/" target="_blank" style="text-decoration: none;"> <i class="fa-brands fa-instagram"></i>
-              <span>@_shoeslab</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.042357073929!2d107.620019!3d-6.885529999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e70bca5c7575%3A0xec360a76f4310d0b!2sShoeslab!5e0!3m2!1sen!2sid!4v1690320208388!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end contact -->
+ 
 
   <!-- testimonial -->
   <section class="testimonial" id="testimonial">
@@ -361,29 +273,7 @@ include './controller/conn.php';
   <!-- end testimonial -->
 
   <!-- footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <p>Copyright 2023 </p>
-        </div>
-        <div class="col-md-6">
-          <div class="icon float-end">
-            <div class="first-icon">
-            <a  href="https://api.whatsapp.com/send?phone=085864931764" target="_blank" style="text-decoration: none;">
-              <i class="fa-brands  fa-whatsapp"></i>
-              <span>089721543217</span>
-              </a>
-            </div>
-            <div class="second-icon">
-            <a href="https://www.instagram.com/_shoeslab/" target="_blank" style="text-decoration: none;"> <i class="fa-brands fa-instagram"></i>
-              <span>@_shoeslab</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+      <?php include './include/footer.php' ?>
   <!-- end-footer -->
   <!-- bootstrap js -->
 

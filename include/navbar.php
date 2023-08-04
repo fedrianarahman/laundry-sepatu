@@ -1,3 +1,11 @@
+<style>
+  .btn-custom{
+    background-color: #72A4A5;
+    color: white;
+    box-shadow: 0px 4px 16px 0px rgba(114, 164, 165, 0.35);
+  }
+  
+</style>
 <nav
         class="navbar navbar-expand-lg justify-content-between  shadow-sm bg-transparent  fixed-top mb-4"
       >
@@ -20,15 +28,32 @@
                 <a class="nav-link active" href="index.php">Beranda </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="./about.php">Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#service">Service</a>
+                <a class="nav-link" href="./service.php">Layanan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
+                <a class="nav-link" href="./contact.php">Kontak Kami</a>
               </li>
+             <?php
+             if (!empty($_SESSION['nama'])) {
+              echo ' <li class="nav-item ">
+              <a class="nav-link" href="./profile.php">Profile</a>
+              </li>';
+             }
+             ?>
             </ul>
+            <?php
+          if (!empty($_SESSION['nama'])) {
+            
+              echo '<a class="btn btn-custom" href="./logout.php">Logout</a>';
+          } else {
+            echo '<a class="btn btn-custom" href="./auth/login.php">Masuk</a>';
+          }
+          
+          ?>
+            
           </div>
         </div>
       </nav>

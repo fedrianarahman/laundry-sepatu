@@ -77,6 +77,9 @@ $kode_spt = $_GET['kode_spt'];
                                                     <label>Nama Pemilik</label>
                                                     <input hidden class="form-control" type="text" name="kode_spt" value="<?php echo $data['kode_sepatu'] ?>" readonly>
                                                     <input hidden class="form-control" type="text" name="jenis_layanan" value="<?php echo $data['jenis_layanan'] ?>" readonly>
+                                                    <input hidden class="form-control" type="text" name="status_sepatu" value="<?php echo $data['status_sepatu'] ?>" readonly>
+                                                    <input hidden class="form-control" type="text" name="id_penyewa" value="<?php echo $data['userId'] ?>" readonly>
+                                                    <input hidden class="form-control" type="text" name="merk_sepatu" value="<?php echo $data['merk_sepatu'] ?>" readonly>
                                                     <input hidden class="form-control" type="text" name="no_hp_pemilik" value="<?php echo $data['no_hp_pemilik'] ?>" readonly>
                                                     <input hidden class="form-control" type="text" name="created_at" value="<?php echo $data['created_at'] ?>" readonly>
                                                     <input class="form-control" type="text" name="nama_pemilik" value="<?php echo $data['pemilik'] ?>" readonly>
@@ -133,9 +136,14 @@ $kode_spt = $_GET['kode_spt'];
                                                     <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Pencucian">
                                                     <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Pencucian</label>
                                                 </div>
+                                                
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Pengeringan">
                                                     <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Pengeringan</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Repaint">
+                                                    <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Repaint</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dala Proses Packing">
