@@ -29,6 +29,7 @@ include './controller/conn.php';
     <br />
     <br />
 
+    <?php include './include/panduan.php'  ?>
     <!-- service -->
   <section class="service mt-4" id="service">
     <h2>Service</h2>

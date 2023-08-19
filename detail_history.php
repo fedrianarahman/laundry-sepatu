@@ -100,20 +100,24 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
         tr {
             margin-bottom: 10px;
         }
-        .sp-pembayaran{
+
+        .sp-pembayaran {
             background-color: #ecfae4;
             color: #68CF29;
             padding: 3px 10px;
         }
-        .s-pemesanan{
+
+        .s-pemesanan {
             padding: 3px 10px;
             background-color: #fff0da;
-    color: #FFAB2D;
+            color: #FFAB2D;
         }
-        .note{
+
+        .note {
             color: red;
         }
-        .note p{
+
+        .note p {
             line-height: 9px;
         }
     </style>
@@ -128,7 +132,7 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
     <br />
     <br />
     <br />
-
+    <?php include './include/panduan.php' ?>
     <div class="container">
 
         <section class="profile">
@@ -146,6 +150,7 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
                             <ul>
                                 <li class="profile-link "><a href="./profile.php">My Profile</a></li>
                                 <li class="profile-link active"><a href="order_history.php">Order History</a></li>
+                                <li class="profile-link "><a href="./pesananSaya.php">My Order</a></li>
                             </ul>
                         </div>
                     </div>
@@ -162,108 +167,111 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
                             <?php
                             $getDapaPesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pesanan, pemesanan.layanan_harga AS harga_layanan, pemesanan.merk_sepatu AS merk_sepatu,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.status_pembayaran AS status_pembayaran,pemesanan.status AS status_pemesanan, pemesanan.created_at AS tgl_pemesanan, pemesanan.nama_pengirim AS nama_pengirim,pemesanan.jumlah_bayar AS jumlah_bayar,pemesanan.asal_bank AS asal_bank,bank.nama_bank AS nama_bank,bank.nama_pemilik AS nama_pemilik,bank.no_rek AS no_rek,service.judul AS jenis_layanan FROM pemesanan INNER JOIN bank ON bank.id = pemesanan.via_bank INNER JOIN service ON service.id = pemesanan.layana_id WHERE pemesanan.id = '$idPesanan' ");
                             while ($dataPemesanan = mysqli_fetch_array($getDapaPesanan)) {
-                               
+
                             ?>
-                            <table class="mb-4">
-                                <tr>
-                                    <td>Merk Sepatu</td>
-                                    <td>:</td>
-                                    <td><?php echo $dataPemesanan['merk_sepatu'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Jenis Sepatu</td>
-                                    <td>:</td>
-                                    <td><?php echo $dataPemesanan['jenis_sepatu'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Warna Sepatu</td>
-                                    <td>:</td>
-                                    <td><?php echo $dataPemesanan['warna_sepatu'] ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Jenis Layanan</td>
-                                    <td>:</td>
-                                    <td><span class="repaint"><?php echo $dataPemesanan['jenis_layanan'] ?></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Harga Layanan</td>
-                                    <td>:</td>
-                                    <td>Rp.<?php echo number_format($dataPemesanan['harga_layanan'], 0, ',', '.');?></td>
-                                </tr>
-                                <tr>
-                                    <td>Status Pembayaran</td>
-                                    <td>:</td>
-                                    <td><span class="sp-pembayaran"><?php
-                                    if ($dataPemesanan['status_pembayaran']=='L') {
-                                        echo 'Lunas';
-                                    } else {
-                                        echo '';
-                                    }
-                                    
-                                    ?></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Akun Bank Tujuan</td>
-                                    <td>:</td>
-                                    <td><?php echo $dataPemesanan['nama_bank']?> | <?php echo $dataPemesanan['no_rek']?> an <?php echo $dataPemesanan['nama_pemilik']?></td>
-                                </tr>
-                                <tr>
-                                    <td>Asal Bank</td>
-                                    <td>:</td>
-                                    <td><?php echo $dataPemesanan['asal_bank']?></td>
-                                </tr>
-                                <tr>
-                                    <td>Jumlah Bayar</td>
-                                    <td>:</td>
-                                    <td>Rp.<?php echo number_format($dataPemesanan['jumlah_bayar'], 0, ',', '.');?></td>
-                                </tr>
-                                <tr>
-                                    <td>Nama Pengirim</td>
-                                    <td>:</td>
-                                    <td><?php echo $dataPemesanan['nama_pengirim']?></td>
-                                </tr>
-                                <tr>
-                                    <td>Status Pemesanan</td>
-                                    <td>:</td>
-                                    <td class="<?php
-                                    if ($dataPemesanan['status_pemesanan']=='P') {
-                                        echo 's-pemesanan';
-                                    } else {
-                                        echo 'sp-pembayaran';
-                                    }?>"><?php
-                                    if ($dataPemesanan['status_pemesanan']=='P') {
-                                        echo 'Menunggu Penyerahan Sepatu';
-                                    } else {
-                                        echo 'Sepatu Terkonfirmasi!';
-                                    }?></td>
-                                </tr>
-                                <tr>
-                                    <td>Tanggal Pemesanan</td>
-                                    <td>:</td>
-                                    <td><?php 
+                                <table class="mb-4">
+                                    <tr>
+                                        <td>Merk Sepatu</td>
+                                        <td>:</td>
+                                        <td><?php echo $dataPemesanan['merk_sepatu'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenis Sepatu</td>
+                                        <td>:</td>
+                                        <td><?php echo $dataPemesanan['jenis_sepatu'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Warna Sepatu</td>
+                                        <td>:</td>
+                                        <td><?php echo $dataPemesanan['warna_sepatu'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenis Layanan</td>
+                                        <td>:</td>
+                                        <td><span class="repaint"><?php echo $dataPemesanan['jenis_layanan'] ?></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Harga Layanan</td>
+                                        <td>:</td>
+                                        <td>Rp.<?php echo number_format($dataPemesanan['harga_layanan'], 0, ',', '.'); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status Pembayaran</td>
+                                        <td>:</td>
+                                        <td><span class="sp-pembayaran"><?php
+                                                                        if ($dataPemesanan['status_pembayaran'] == 'L') {
+                                                                            echo 'Lunas';
+                                                                        } else {
+                                                                            echo '';
+                                                                        }
+
+                                                                        ?></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Akun Bank Tujuan</td>
+                                        <td>:</td>
+                                        <td><?php echo $dataPemesanan['nama_bank'] ?> | <?php echo $dataPemesanan['no_rek'] ?> an <?php echo $dataPemesanan['nama_pemilik'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asal Bank</td>
+                                        <td>:</td>
+                                        <td><?php echo $dataPemesanan['asal_bank'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jumlah Bayar</td>
+                                        <td>:</td>
+                                        <td>Rp.<?php echo number_format($dataPemesanan['jumlah_bayar'], 0, ',', '.'); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Pengirim</td>
+                                        <td>:</td>
+                                        <td><?php echo $dataPemesanan['nama_pengirim'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Status Pemesanan</td>
+                                        <td>:</td>
+                                        <td class="<?php
+                                                    if ($dataPemesanan['status_pemesanan'] == 'P') {
+                                                        echo 's-pemesanan';
+                                                    } else {
+                                                        echo 'sp-pembayaran';
+                                                    } ?>"><?php
+                                                            if ($dataPemesanan['status_pemesanan'] == 'P') {
+                                                                echo 'Menunggu Penyerahan Sepatu';
+                                                            } else {
+                                                                echo 'Sepatu Terkonfirmasi!';
+                                                            } ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Pemesanan</td>
+                                        <td>:</td>
+                                        <td><?php
                                             $created_old = strtotime($dataPemesanan['tgl_pemesanan']);
-                                            echo date('F d Y', $created_old)?></td>
-                                </tr>
-                            </table>
-                            <div class="row mb-4">
-                                <div class="note">
-                                <p>*Note :</p>
-                                <p>- Silahkan Datang Ke Store untuk menyerahkan sepatu Sebelum Tanggal : <span style="font-weight:bold;"><?php $limaHariDariSekarang = date(" Y-m-d", strtotime("+5 day"));
-                                $batasHari = date('F d,Y', strtotime($limaHariDariSekarang));
-                                 echo $batasHari?></span></p>
-                                <p>- Jika Lewat Dari Tanggal Yang Sudah Ditentukan Maka Pemesanan Dianggap Hangus</p>
-                                <p>- <span style="font-weight: bold;">No Refund</span></p>
+                                            echo date('F d Y', $created_old) ?></td>
+                                    </tr>
+                                </table>
+                                <div class="row mb-4">
+                                    <div class="note">
+                                        <p>*Note :</p>
+                                        <p>- Silahkan Datang Ke Store untuk menyerahkan sepatu Sebelum Tanggal : <span style="font-weight:bold;">
+                                                <?php
+                                                $tglPemesanan = strtotime($dataPemesanan['tgl_pemesanan']);
+                                                $limaHariDariSekarang = date('d F Y', strtotime('+5 days', $tglPemesanan));
+                                                echo $limaHariDariSekarang;
+                                                ?></span></p>
+                                        <p>- Jika Lewat Dari Tanggal Yang Sudah Ditentukan Maka Pemesanan Dianggap Hangus</p>
+                                        <p>- <span style="font-weight: bold;">No Refund</span></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <a href="./order_history.php" class="btn btn-warning btn-sm">Kembali</a>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a href="./order_history.php" class="btn btn-warning btn-sm">Kembali</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a href="./printInvoice.php?id_pesanan=<?php echo $dataPemesanan['id_pesanan'] ?>" class="btn btn-primary btn-sm" target="_blank" style="float: right;">Cetak Invoice</a>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <a href="./printInvoice.php?id_pesanan=<?php echo $dataPemesanan['id_pesanan']?>" class="btn btn-primary btn-sm" target="_blank" style="float: right;">Cetak Invoice</a>
-                                </div>
-                            </div>
-                            <?php }?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

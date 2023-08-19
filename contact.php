@@ -28,6 +28,7 @@ include './controller/conn.php';
     <br />
     <br />
     <br />
+    <?php include './include/panduan.php' ?>
      <!-- contact -->
   <section class="contact" id="contact">
     <div class="container">

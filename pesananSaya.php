@@ -109,7 +109,8 @@ $idUser = $_SESSION['user_id'];
     <br />
     <br />
     <br />
-
+    
+    <?php include'./include/panduan.php'  ?>
     <div class="container">
 
         <section class="profile">
@@ -136,7 +137,18 @@ $idUser = $_SESSION['user_id'];
 
                     <div class="card border-0 shadow-sm">
                         <div class="card-body">
-                            <h6 style="text-align: center; color:red; font-weight:bold;">Tidak Ada Pesanan</h6>
+                            
+                            <?php
+                             $getDataSepatu = mysqli_query($conn, "SELECT p1.*, service.judul
+                             FROM progress_sepatu p1
+                             INNER JOIN service ON service.id = p1.jenis_layanan
+                             LEFT JOIN progress_sepatu p2 ON p1.kode_sepatu = p2.kode_sepatu AND p1.id < p2.id
+                             WHERE p2.id IS NULL AND p1.userId = '$idUser'");
+                             $i = 1;
+                             if (mysqli_num_rows($getDataSepatu) >0) {
+                                
+                            ?>
+                            
                             <div class="table-responsive">
                                 <table class="table table-sm">
                                     <tr>
@@ -148,23 +160,18 @@ $idUser = $_SESSION['user_id'];
                                         <th>Jenis Layanan</th>
                                         <th>Status Pencucian</th>
                                         <th>Status Sepatu</th>
-                                        <th>Aksi</th>
+                                        <th>Tanggal Pengambilan</th>
                                     </tr>
                                     <?php
-                                    $getDataSepatu = mysqli_query($conn, "SELECT p1.*, service.judul
-                                    FROM progress_sepatu p1
-                                    INNER JOIN service ON service.id = p1.jenis_layanan
-                                    LEFT JOIN progress_sepatu p2 ON p1.kode_sepatu = p2.kode_sepatu AND p1.id < p2.id
-                                    WHERE p2.id IS NULL AND p1.userId = '$idUser'");
-                                    $i = 1;
+                                   
                                     while ($dataSepatu = mysqli_fetch_array($getDataSepatu)) {
 
                                     ?>
                                         <tr>
                                             <td><?php echo $i++ ?></td>
                                             <td><?php echo $dataSepatu['kode_sepatu'] ?></td>
-                                            <td><?php echo $dataSepatu['jenis_sepatu'] ?></td>
                                             <td><?php echo $dataSepatu['merk_sepatu'] ?></td>
+                                            <td><?php echo $dataSepatu['jenis_sepatu'] ?></td>
                                             <td><?php echo $dataSepatu['warna'] ?></td>
                                             <td><?php echo $dataSepatu['judul'] ?></td>
                                             <td>
@@ -195,11 +202,14 @@ $idUser = $_SESSION['user_id'];
                                                             echo '<span class="badge badge-custom-proses">Masih Dalam Pengerjaan</span>';
                                                         }
                                                         ?></td>
-                                            <td>Aksi</td>
+                                            <td class="text-center">-</td>
                                         </tr>
                                     <?php } ?>
                                 </table>
                             </div>
+                            <?php }else{
+                                echo '<h6 style="text-align: center; color:red; font-weight:bold;">Tidak Ada Pesanan</h6>';
+                            }?>
                         </div>
                     </div>
                 </div>

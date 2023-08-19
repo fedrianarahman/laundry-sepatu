@@ -406,7 +406,7 @@ tl-item.active .tl-dot:before {
     <br />
     <br />
     <br />
-
+    <?php include './include/panduan.php' ?>
     <div class="container">
 
         <section class="profile">
@@ -424,6 +424,7 @@ tl-item.active .tl-dot:before {
                             <ul>
                                 <li class="profile-link "><a href="./profile.php">My Profile</a></li>
                                 <li class="profile-link active"><a href="order_history.php">Order History</a></li>
+                                <li class="profile-link "><a href="./pesananSaya.php">My Order</a></li>
                             </ul>
                         </div>
                     </div>
@@ -466,6 +467,11 @@ tl-item.active .tl-dot:before {
                                 </div>
                             <?php } ?>
                                 </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-6">
+                            <a href="./pesananSaya.php" class="btn btn-warning btn-sm">Kembali</a>
+                            </div>
                             </div>
                         </div>
                     </div>

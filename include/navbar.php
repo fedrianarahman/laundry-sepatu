@@ -1,3 +1,6 @@
+<?php
+$route = basename($_SERVER['PHP_SELF']);
+?>
 <style>
   .btn-custom{
     background-color: #72A4A5;
@@ -25,24 +28,59 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="index.php">Beranda </a>
+                <a class="nav-link <?php if ($route==='index.php') {
+										# code...
+										echo 'active';
+									} else {
+										# code...
+										echo '';
+									}
+									?>" href="index.php">Beranda </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./about.php">Tentang</a>
+                <a class="nav-link <?php if ($route==='about.php') {
+										# code...
+										echo 'active';
+									} else {
+										# code...
+										echo '';
+									}
+									?>" href="./about.php">Tentang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./service.php">Layanan</a>
+                <a class="nav-link <?php if ($route==='service.php') {
+										# code...
+										echo 'active';
+									} else {
+										# code...
+										echo '';
+									}
+									?>" href="./service.php">Layanan</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./contact.php">Kontak Kami</a>
+                <a class="nav-link <?php if ($route==='contact.php') {
+										# code...
+										echo 'active';
+									} else {
+										# code...
+										echo '';
+									}
+									?>" href="./contact.php">Kontak Kami</a>
               </li>
              <?php
              if (!empty($_SESSION['nama'])) {
-              echo ' <li class="nav-item ">
-              <a class="nav-link" href="./profile.php">Profile</a>
-              </li>';
-             }
-             ?>
+            ?>
+            <li class="nav-item ">
+              <a class="nav-link  <?php if ($route==='profile.php') {
+										# code...
+										echo 'active';
+									} else {
+										# code...
+										echo '';
+									}
+									?>" href="./profile.php">Profile</a>
+              </li>
+            <?php }?>
             </ul>
             <?php
           if (!empty($_SESSION['nama'])) {

@@ -56,24 +56,7 @@ session_start();
       color: white;
     }
 
-    .whats-app {
-      position: fixed;
-      width: 50px;
-      height: 50px;
-      bottom: 40px;
-      background-color: #25d366;
-      color: #FFF;
-      border-radius: 50px;
-      text-align: center;
-      font-size: 30px;
-      box-shadow: 3px 4px 3px #999;
-      right: 15px;
-      z-index: 100;
-    }
-
-    .my-float {
-      margin-top: 10px;
-    }
+    
     #about,#service,#contact,#check-shoes-progress {
   scroll-margin-top: 100px; /* Sesuaikan dengan ukuran tinggi navbar */
 }
@@ -121,11 +104,7 @@ session_start();
   </section>
   <!-- end hero -->
 
-  <!-- whatsapp icon -->
-  <a class="whats-app" href="https://api.whatsapp.com/send?phone=085864931764" target="_blank">
-    <i class="fa-brands  fa-whatsapp my-float"></i>
-  </a>
-  <!-- whatsapp icon -->
+  <?php include './include/panduan.php' ?>
   <!-- check shoes progress -->
   <section class="check-shoes-progress-2" id="check-shoes-progress">
     <div class="container">

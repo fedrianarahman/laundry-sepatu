@@ -36,9 +36,17 @@ $emailPemesanan = $_POST['email_pemesan'];
 $idPenyewa = $_POST['id_penyewa'];
 $status_sepatu = "at store";
 $merk_sepatu = $_POST['merk_sepatu'];
-// menambahkan ke dalam database
-$addProgressSepatu = mysqli_query($conn, "INSERT INTO `progress_sepatu`(`id`, `kode_sepatu`,`userId`, `pemilik`, `no_hp_pemilik`, `merk_sepatu`, `jenis_sepatu`,`warna`, `jenis_layanan`, `status`, `created_at`, `status_sepatu`) VALUES ('','$kode_barang','$idPenyewa','$nama_pemilik','$no_hp_pemilik','$merk_sepatu','$jenis_sepatu','$warna_sepatu','$jenis_layanan','$status','$created_at','$status_sepatu')");
 
+// tambahan kedua
+$getLayanan = mysqli_query($conn, "SELECT * FROM service WHERE id = '$jenis_layanan'");
+$dataLayanan = mysqli_fetch_array($getLayanan);
+$namaLayanan = $dataLayanan['judul'];
+$hargaLayanan= $dataLayanan['harga'];
+// menambahkan ke dalam database
+
+// $addProgressSepatu = mysqli_query($conn, "INSERT INTO `progress_sepatu`(`id`, `kode_sepatu`,`userId`, `pemilik`, `no_hp_pemilik`, `merk_sepatu`, `jenis_sepatu`,`warna`, `jenis_layanan`, `status`, `created_at`, `status_sepatu`) VALUES ('','$kode_barang','$idPenyewa','$nama_pemilik','$no_hp_pemilik','$merk_sepatu','$jenis_sepatu','$warna_sepatu','$jenis_layanan','$status','$created_at','$status_sepatu')");
+
+$addProgressSepatu = mysqli_query($conn, "INSERT INTO `progress_sepatu`(`id`, `kode_sepatu`, `userId`, `pemilik`, `no_hp_pemilik`, `emai`, `merk_sepatu`, `jenis_sepatu`, `warna`, `jenis_layanan`, `nama_layanan`, `harga_layanan`, `status`, `status_sepatu`, `created_at`) VALUES ('','$kode_barang','$idPenyewa','$nama_pemilik','$no_hp_pemilik','$emailPemesanan','$merk_sepatu','$jenis_sepatu','$warna_sepatu','$jenis_layanan','$namaLayanan','$hargaLayanan','$status','$status_sepatu','$created_at')");
 
 if ($addProgressSepatu) {
     $_SESSION['status-info'] = "Data Berhasil ditambahkan";

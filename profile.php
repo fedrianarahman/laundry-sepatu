@@ -155,6 +155,7 @@ include './controller/conn.php';
     <br />
     <br />
 
+    <?php  include './include/panduan.php' ?>
     <div class="container">
 
         <section class="profile">
@@ -213,6 +214,7 @@ include './controller/conn.php';
                                             <div class="mb-2">
                                                 <label for="exampleFormControlInput1" class="form-label">Nama</label>
                                                 <input type="text" class="form-control" id="exampleFormControlInput1" value="<?php echo $dataUser['nama'] ?>" name="nama">
+                                                <input hidden type="text" class="form-control" id="exampleFormControlInput1" value="<?php echo $dataUser['photo'] ?>" name="old_photo">
                                             </div>
                                         </div>
                                         <div class="col-md-4">

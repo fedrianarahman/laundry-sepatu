@@ -108,7 +108,7 @@ $harga_layanan = $_GET['layanan_harga'];
     <br />
     <br />
     <br />
-
+    <?php include './include/panduan.php' ?>
     <!-- booking -->
     <section class="booking-page">
         <div class="container">

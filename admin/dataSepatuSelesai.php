@@ -26,6 +26,25 @@ if (!isset($_SESSION['nama'])) {
     <link rel="stylesheet" href="./assets/data-table/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="./assets/data-table/css/style.css"> -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .badge-custom {
+            background-color: #ecfae4;
+            color: #68CF29;
+            padding: 3px 10px;
+        }
+
+        .badge-custom-proses {
+            background-color: #ffefee;
+            color: #FF4C41;
+            padding: 3px 10px;
+        }
+
+        .badge-custom-done {
+            background-color: #fff0da;
+            color: #FFAB2D;
+            padding: 3px 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -91,61 +110,50 @@ if (!isset($_SESSION['nama'])) {
                         ?>
                         <div class="card card-table flex-fill">
                             <div class="card-header ">
-                                <h4 class="card-title float-left mt-2">Data Pemesanan</h4>
-                                <!-- <a href="addSepatu.php" class="btn btn-primary float-right veiwbutton"><i class="fas mr-2 fa-plus"></i>Tambah data</a> -->
+                                <h4 class="card-title float-left mt-2">Data Pencucian Selesai</h4>
+                              
                                 <!-- <button type="button" class="btn btn-primary float-right veiwbutton"></button> -->
                             </div>
                             <div class="card-body">
+                              
                                 <div class="table-responsive table-sm">
                                     <table id="example3" class="display " style="min-width: 845px">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nama </th>
-                                                <th>Email</th>
+                                                <th>Pemilik</th>
+                                                <th>Kode Sepatu</th>
                                                 <th>NO HP</th>
                                                 <th>Merk Sepatu</th>
-                                                <th>Jenis Sepatu</th>
                                                 <th>Warna</th>
                                                 <th>Jenis Layanan</th>
-                                                <th>Status Pemesanan</th>
-                                                <th>Tanggal Pemesanan</th>
-                                                <th>Action</th>
+                                                <th>Status Sepatu</th>
+                                                <th>Tanggal Pengambilan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pemesanan,pemesanan.nama_pemesan AS nama_pemesan,pemesanan.email_pemesan AS email_pemesan,pemesanan.no_hp_pemesan AS no_hp_pemesan,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.merk_sepatu AS merk_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS created_at,pemesanan.status AS status,service.judul AS judul FROM pemesanan INNER JOIN service ON service.id  = pemesanan.layana_id  WHERE pemesanan.status_pembayaran='L'");
+                                            $getDataSepatu = mysqli_query($conn, "SELECT p1.*, service.judul
+                                            FROM progress_sepatu p1
+                                            INNER JOIN service ON service.id = p1.jenis_layanan
+                                            LEFT JOIN progress_sepatu p2 ON p1.kode_sepatu = p2.kode_sepatu AND p1.id < p2.id
+                                            WHERE p2.id IS NULL AND p1.status_sepatu ='sudah diambil'");
                                             $i = 1;
-                                            while ($dataPesanan = mysqli_fetch_array($getDataPemesanan)) {
+                                            while ($dataSepatuSelesai = mysqli_fetch_array($getDataSepatu)) {
+                                                
                                             ?>
-                                                <tr>
-                                                    <td><?php echo $i ?></td>
-                                                    <td><?php echo $dataPesanan['nama_pemesan'] ?></td>
-                                                    <td><?php echo $dataPesanan['email_pemesan'] ?></td>
-                                                    <td><?php echo $dataPesanan['no_hp_pemesan'] ?></td>
-                                                    <td><?php echo $dataPesanan['merk_sepatu'] ?></td>
-                                                    <td><?php echo $dataPesanan['jenis_sepatu'] ?></td>
-                                                    <td><?php echo $dataPesanan['warna_sepatu'] ?></td>
-                                                    <td><?php echo $dataPesanan['judul'] ?></td>
-                                                    <td><span class=" <?php if ($dataPesanan['status']=='P') {
-                                                          echo "badge light badge-warning text-white";  
-                                                        }else{
-                                                            echo 'alert-success text-success';
-                                                        }   ?>">
-                                                        <?php if ($dataPesanan['status']=='P') {
-                                                          echo "Pending";  
-                                                        }else{
-                                                            echo 'Accepted';
-                                                        }   ?></span></td>
-                                                    <td><?php echo $dataPesanan['created_at'] ?></td>
-                                                    <td>
-                                                        <a href="./detailPemesanan.php?id=<?php echo $dataPesanan['id_pemesanan']?>" class="btn btn-warning" data-toggle="tooltip" title="View"><i class="fas fa-eye"></i></a>
-                                                        <!-- <a href="#" class="btn btn-danger" data-toggle="tooltip" title="delete"><i class="fas fa-trash-alt"></i></a> -->
-                                                    </td>
-                                                </tr>
-                                                <?php $i++ ?>
-                                            <?php } ?>
+                                           <tr>
+                                                <td><?php echo $i++?></td>
+                                                <td><span class="badge"><?php echo $dataSepatuSelesai['pemilik'] ?></span></td>
+                                                <td><span class="badge"><?php echo $dataSepatuSelesai['kode_sepatu'] ?></span></td>
+                                                <td><span class="badge"><?php echo $dataSepatuSelesai['no_hp_pemilik'] ?></span></td>
+                                                <td><span class="badge"><?php echo $dataSepatuSelesai['merk_sepatu'] ?></span></td>
+                                                <td><span class="badge"><?php echo $dataSepatuSelesai['warna'] ?></span></td>
+                                                <td><span class="badge"><?php echo $dataSepatuSelesai['judul'] ?></span></td>
+                                                <td> <span class="badge badge-custom"><?php echo $dataSepatuSelesai['status_sepatu'] ?></span></td>
+                                                <td><span class="badge"><?php $tglPengambilan = strtotime($dataSepatuSelesai['updated_at']); echo date('d F Y', $tglPengambilan);  ?></span></td>
+                                           </tr>
+                                           <?php }?>
                                         </tbody>
                                     </table>
                                 </div>

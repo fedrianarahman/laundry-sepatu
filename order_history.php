@@ -91,7 +91,7 @@ $idUser = $_SESSION['user_id'];
     <br />
     <br />
     <br />
-
+        <?php include './include/panduan.php' ?>
     <div class="container">
 
         <section class="profile">
@@ -118,6 +118,12 @@ $idUser = $_SESSION['user_id'];
 
                     <div class="card border-0 shadow-sm">
                         <div class="card-body">
+                            <?php
+                              $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pesanan, pemesanan.merk_sepatu AS merk_sepatu,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS tgl_pemesanan,service.judul AS jenis_layanan FROM pemesanan INNER JOIN service ON service.id = pemesanan.layana_id WHERE pemesanan.userId = '$idUser' AND pemesanan.status_pembayaran='L'");
+                              $i =1;
+                              if (mysqli_num_rows($getDataPemesanan) > 0) {
+                                
+                            ?>
                             <div class="table-responsive">
                                 <table class="table table-sm">
                                     <tr>
@@ -131,8 +137,7 @@ $idUser = $_SESSION['user_id'];
                                         <th>Aksi</th>
                                     </tr>
                                     <?php
-                                    $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pesanan, pemesanan.merk_sepatu AS merk_sepatu,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS tgl_pemesanan,service.judul AS jenis_layanan FROM pemesanan INNER JOIN service ON service.id = pemesanan.layana_id WHERE pemesanan.userId = '$idUser'");
-                                    $i =1;
+                                  
                                     while ($dataPemesanan = mysqli_fetch_array($getDataPemesanan)) {
                                     ?>
                                     <tr>
@@ -152,6 +157,9 @@ $idUser = $_SESSION['user_id'];
                                     <?php }?>
                                 </table>
                             </div>
+                            <?php }else{
+                                echo '<h6 style="text-align: center; color:red; font-weight:bold;">Tidak Ada Riwayat</h6>';
+                            }?>
                         </div>
                     </div>
                 </div>

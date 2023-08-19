@@ -82,6 +82,7 @@ $kode_spt = $_GET['kode_spt'];
                                                     <input hidden class="form-control" type="text" name="merk_sepatu" value="<?php echo $data['merk_sepatu'] ?>" readonly>
                                                     <input hidden class="form-control" type="text" name="no_hp_pemilik" value="<?php echo $data['no_hp_pemilik'] ?>" readonly>
                                                     <input hidden class="form-control" type="text" name="created_at" value="<?php echo $data['created_at'] ?>" readonly>
+                                                    <input hidden class="form-control" type="text" name="email" value="<?php echo $data['emai'] ?>" readonly>
                                                     <input class="form-control" type="text" name="nama_pemilik" value="<?php echo $data['pemilik'] ?>" readonly>
                                                 </div>
                                             </div>

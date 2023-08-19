@@ -5,8 +5,10 @@ if (!isset($_SESSION['nama'])) {
     header("Location: ./auth/login.php");
     exit();
 }
-
-$id = $_GET['id'];
+$id= "";
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -192,6 +194,18 @@ $id = $_GET['id'];
                                                     <div class="form-group">
                                                         <label>NO HP Pemilik</label>
                                                         <input class="form-control" type="text" name="no_hp_pemilik" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input class="form-control" type="text" name="email_pemesan" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Merk Sepatu</label>
+                                                        <input class="form-control" type="text" name="merk_sepatu" value="">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">

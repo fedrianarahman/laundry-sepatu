@@ -11,5 +11,5 @@ if ($updateData) {
     $_SESSION['status-fail'] = "Gagal";
 }
 
-header("Location:../../dataSepatu.php");
+header("Location:../../dataSepatuSelesai.php");
 ?>

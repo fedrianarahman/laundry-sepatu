@@ -49,7 +49,33 @@ print_r($route)
 							</ul>
 						</li>
 						<?php }?>
-						
+						<li class="submenu"> <a href="#" class=""><i class="fas fa-book"></i> <span> Archive </span> <span class="menu-arrow"></span></a>
+							<ul class="submenu_class" style="">
+								<li>
+									<a 
+									class="<?php if ($route==='dataSepatuSelesai.php') {
+										# code...
+										echo 'active';
+									} else {
+										# code...
+										echo '';
+									}
+									?>"
+									href="dataSepatuSelesai.php"> Pencucian Selesai 
+
+									</a>
+								</li>
+								<li><a href="rekapDataPencucian.php" class="<?php if ($route==='rekapDataPencucian.php') {
+										# code...
+										echo 'active';
+									} else {
+										# code...
+										echo '';
+									}
+									?>">Riwayat Data Pencucian</a></li>
+								
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>

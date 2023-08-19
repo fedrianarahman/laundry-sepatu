@@ -157,7 +157,8 @@ $idPesanan = $_GET['id_pemesanan'];
     <br />
     <br />
     <br />
-
+    
+    <?php include './include/panduan.php' ?>
     <!-- booking -->
     <section class="booking-page">
         <div class="container">
@@ -216,13 +217,14 @@ $idPesanan = $_GET['id_pemesanan'];
                     <?php
                     $getDataPesanan = mysqli_query($conn, "SELECT * FROM pemesanan INNER JOIN service ON service.id = pemesanan.layana_id");
                     $dataPesanan = mysqli_fetch_array($getDataPesanan);
-                    $dataWaktu = strtotime($dataPesanan['expire_end']);
-                    $getDateTime = date("F d, Y H:i:s", $dataWaktu);
                     ?>
+
+
                     <h2 class="price-fish-detail"><span class="price-fish-cs-rp">Jenis Layanan : <?php echo ucwords($dataPesanan['judul'])?> | Rp.<?php echo number_format($dataPesanan['layanan_harga'], 0, ',', '.') ?></span></h2>
+
                     <h2 class="price-fish-detail "><span class="price-fish-cs-rp">Total Bayar : Rp.<?php echo number_format($dataPesanan['layanan_harga'], 0, ',', '.') ?></span></h2>
                     <h5 class="name-product-detail">silahkan lakukan pembayaran dan upload bukti pembayaran :</h5>
-                    <h5 class="note">*Note: <span id="counter"></span></h5>
+                    <h5 class="note" id="counter">*Note: </h5>
                     <form action="./controller/pemesanan/update.php" method="POST" class="mt-4" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="form-group bank mb-2">
@@ -284,27 +286,13 @@ $idPesanan = $_GET['id_pemesanan'];
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="./assets/js/script2.js"></script>
+    <?php
+    $getWaktu = mysqli_query($conn, "SELECT * FROM pemesanan WHERE id = '$idPesanan'");
+    $dataWaktu = mysqli_fetch_array($getWaktu);
+    $waktu = strtotime($dataWaktu['expire_end']);
+    $getDateTime = date('F d, Y H:i:s', $waktu);
+    ?>
 
-    <!-- <script>
-        $('input.CurrencyInput').on('blur', function() {
-  const value = this.value.replace(/,/g, '');
-  this.value = parseFloat(value).toLocaleString('en-US', {
-    style: 'decimal',
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2
-  });
-});
-    </script> -->
-    <!-- <script>
-        $('input.CurrencyInput').on('blur', function() {
-            const value = this.value.replace(/,/g, '');
-            const formattedValue = parseFloat(value).toLocaleString('en-US', {
-                style: 'currency',
-                currency: 'IDR'
-            });
-            this.value = formattedValue;
-        });
-    </script> -->
     <script>
         var countDownTimer = new Date("<?php echo "$getDateTime"; ?>").getTime();
         // console.log("line 49", countDownTimer);
@@ -320,7 +308,7 @@ $idPesanan = $_GET['id_pemesanan'];
             var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            console.log("line 62", seconds);
+            console.log("line 326", countDownTimer);
 
             document.getElementById("counter").innerHTML = "Batas Waktu Pembayaran : " +
                 minutes + "m " + seconds + "s ";

@@ -26,4 +26,15 @@
 #Revisian
 1. 
 
+#Yang Sudah Dikerjakan
+1. membuat login dan registrasi untuk user
+2. membuat halaman profile pada user
+3. membuat halaman riwayat pemesanan pada user
+4. membuat cetak invoice untuk di halaman user namun belum terlalu rapih
+5. membuat halaman pesanan saya di user
+6. menambahkan merk speatu pada saat proses pemesanan
+7. membuat pengecekan progress di user
+8. membuat batas waktu pembayaran di user
+9. membuat detail riwayat pada halaman user
+
 

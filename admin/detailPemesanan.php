@@ -23,6 +23,18 @@ $id = $_GET['id'];
     <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
     <link rel="stylesheet" href="assets/plugins/morris/morris.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+         .sp-pembayaran {
+            background-color: #ecfae4;
+            color: #68CF29;
+            padding: 3px 10px;
+        }
+        .s-pemesanan {
+            padding: 3px 10px;
+            background-color: #fff0da;
+            color: #FFAB2D;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,7 +69,7 @@ $id = $_GET['id'];
                                     <div class="col-lg-12">
                                         <form method="POST" action="./controller/sepatu/add.php" enctype="multipart/form-data">
                                             <?php
-                                            $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pemesanan,pemesanan.userId AS id_penyewa,pemesanan.layana_id AS layana_id,pemesanan.nama_pemesan AS nama_pemesan,pemesanan.email_pemesan AS email_pemesan,pemesanan.merk_sepatu AS merk_sepatu,pemesanan.no_hp_pemesan AS no_hp_pemesan,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS created_at,pemesanan.status AS status,service.judul AS judul,service.harga AS harga FROM pemesanan INNER JOIN service ON service.id  = pemesanan.layana_id WHERE pemesanan.id = '$id'");
+                                            $getDataPemesanan = mysqli_query($conn, "SELECT pemesanan.id AS id_pemesanan,pemesanan.userId AS id_penyewa,pemesanan.layana_id AS layana_id,pemesanan.nama_pemesan AS nama_pemesan,pemesanan.email_pemesan AS email_pemesan,pemesanan.status_pembayaran AS status_pembayaran,pemesanan.merk_sepatu AS merk_sepatu,pemesanan.no_hp_pemesan AS no_hp_pemesan,pemesanan.jenis_sepatu AS jenis_sepatu,pemesanan.warna_sepatu AS warna_sepatu,pemesanan.created_at AS created_at,pemesanan.status AS status,service.judul AS judul,service.harga AS harga FROM pemesanan INNER JOIN service ON service.id  = pemesanan.layana_id WHERE pemesanan.id = '$id'");
                                             while ($dataPemesanan = mysqli_fetch_array($getDataPemesanan)) {
 
                                             ?>
@@ -113,7 +125,20 @@ $id = $_GET['id'];
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="font-weight-bolder">Jumlah Yang Harus Dibayar</label>
-                                                            <input class="form-control" type="text" name="harga" value="Rp <?php echo number_format($dataPemesanan['harga'], 0, ',', '.')?>">
+                                                            <input class="form-control" type="text" name="harga" value="Rp <?php echo number_format($dataPemesanan['harga'], 0, ',', '.')?>" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="font-weight-bolder">Status Pembayaran</label>
+                                                            <?php
+                                                            if ($dataPemesanan['status_pembayaran']=='L') {
+                                                                echo '<p class="sp-pembayaran">Lunas</p>';
+                                                            }else{
+                                                                echo '<p class="sp-pemesanan">Belum Lunas</p>';
+                                                            }
+                                                            ?>
+                                                            
                                                         </div>
                                                     </div>
                                                     
@@ -129,9 +154,9 @@ $id = $_GET['id'];
                                                 <a href="./dataPemesanan.php" class="btn btn-warning text-white">Kembali</a>
                                                 <?php
                                                 if ($dataPemesanan['status']=='P') {
-                                                    echo '<a class="btn btn-primary" href="./controller/pemesanan/updateStatusPembayaran.php?id=' . $dataPemesanan['id_pemesanan'] . '" style="float: right;">Konfirmasi Pembayaran</a>';
+                                                    echo '<a class="btn btn-primary" href="./controller/pemesanan/updateStatusPembayaran.php?id=' . $dataPemesanan['id_pemesanan'] . '" style="float: right;">Konfirmasi Pemesanan</a>';
                                                 } else {
-                                                    echo '<span class="btn btn-primary" style="float: right;">Konfirmasi Pembayaran</span>';
+                                                    echo '<span class="btn btn-primary" style="float: right;">Pesanan Terkonfirmasi!</span>';
                                                 }
                                                 
                                                 ?>

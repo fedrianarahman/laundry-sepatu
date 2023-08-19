@@ -137,7 +137,7 @@ if (!isset($_SESSION['nama'])) {
                                             FROM progress_sepatu p1
                                             INNER JOIN service ON service.id = p1.jenis_layanan
                                             LEFT JOIN progress_sepatu p2 ON p1.kode_sepatu = p2.kode_sepatu AND p1.id < p2.id
-                                            WHERE p2.id IS NULL");
+                                            WHERE p2.id IS NULL AND p1.status_sepatu !='sudah diambil'");
                                             $i = 1;
                                             while ($data = mysqli_fetch_array($ambilDataSepatu)) {
                                             ?>
@@ -180,8 +180,12 @@ if (!isset($_SESSION['nama'])) {
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a href="./editSepatu.php?id=<?php echo $data['kode_sepatu'] ?>" class="btn btn-primary" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
-                                                        <a href="./controller/sepatu/delete.php?id=<?php echo $data['kode_sepatu'] ?>" class="btn btn-danger" data-toggle="tooltip" title="delete"><i class="fas fa-trash-alt"></i></a>
+                                                      <div class="d-flex">
+                                                      <a href="printNota.php?id=<?php echo $data['kode_sepatu'] ?>" target="_blank" class="btn  btn-warning" data-toggle="tooltip" title="Cetak"><i class="fas fa-book"></i></a>
+                                                      <a href="./editSepatu.php?id=<?php echo $data['kode_sepatu'] ?>" class="btn ml-2  btn-primary" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
+                                                        <a href="./controller/sepatu/delete.php?id=<?php echo $data['kode_sepatu'] ?>" class="btn ml-2 btn-danger" data-toggle="tooltip" title="delete"><i class="fas fa-trash-alt"></i></a>
+                                                       
+                                                      </div>
                                                     </td>
                                                 </tr>
                                                 <?php $i++ ?>

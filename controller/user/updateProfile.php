@@ -21,7 +21,7 @@ if (!empty($_FILES['photo']['name'])) {
     $photo = $_POST['old_photo'];
 }
 
-$updateProfile = mysqli_query($conn, "UPDATE `user` SET `photo`='$photo',`nama`='$nama',`email`='$email',`no_hp`='$no_hp',`username`='$username',`password`='$password',`updated_at`='$updated_at' WHERE `id`='$idUser'");
+$updateProfile = mysqli_query($conn, "UPDATE `user` SET `photo`='$photo',`nama`='$nama',`email`='$email',`no_hp`='$no_hp',`username`='$username',alamat='$alamat',`password`='$password',`updated_at`='$updated_at' WHERE `id`='$idUser'");
 
 if ($updateProfile) {
     $_SESSION['status-info'] = "Profile Berhasil Diupdate";

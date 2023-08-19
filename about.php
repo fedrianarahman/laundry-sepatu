@@ -29,6 +29,7 @@ include './controller/conn.php';
     <br />
     <br />
 
+      <?php include './include/panduan.php'  ?>
    <!-- about --> 
   <section class="about" id="about">
     <div class="container">
@@ -42,17 +43,9 @@ include './controller/conn.php';
           <div class="about-content">
             <h2 class="about-title" >Tentang Kami</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-              aperiam est eaque quia impedit fuga ad repellendus totam
-              officia, reiciendis iusto modi incidunt vero ipsam nobis
-              deleniti consequatur dicta mollitia?
+              Kami adalah tim ahli dalam layanan pencucian sepatu yang berkomitmen untuk menjaga dan mempercantik sepatu Anda. Dengan pengalaman bertahun-tahun dalam industri ini, kami memahami betapa pentingnya sepatu bagi penampilan dan kenyamanan Anda. Kami menggunakan metode pencucian terkini dan bahan berkualitas tinggi untuk memastikan sepatu Anda tetap bersih, segar, dan tahan lama.
             </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-              aperiam est eaque quia impedit fuga ad repellendus totam
-              officia, reiciendis iusto modi incidunt vero ipsam nobis
-              deleniti consequatur dicta mollitia?
-            </p>
+            
           </div>
         </div>
       </div>
