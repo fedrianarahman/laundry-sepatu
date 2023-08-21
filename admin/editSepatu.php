@@ -113,14 +113,14 @@ $kode_spt = $_GET['id'];
                                                         }?>>
                                                         <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Antrian</label>
                                                     </div>
-                                                    <div class="form-check form-check-inline">
+                                                    <!-- <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="status" id="blog_inactive" value="Sepatu Dalam Proses Pencucian" <?php if ($dataProgress['status'] =="Sepatu Dalam Proses Pencucian") {
                                                             echo 'checked';
                                                         }?>>
                                                         <label class="form-check-label" for="blog_inactive">
                                                             Sepatu Dalam Proses Pencucian
                                                         </label>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                             <?php }?>
