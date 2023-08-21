@@ -15,7 +15,7 @@ if ($jumlah!=$harga_layanan) {
     header("Location:../../paymentPage.php?id_pemesanan=$idPesanan");
 } else {
     
-    $updateData = mysqli_query($conn, "UPDATE `pemesanan` SET `via_bank`='$akunTujuan',`jumlah_bayar`='$jumlah',`sisa_bayar`='$sisaBayar',`asal_bank`='$asalBank',`nama_pengirim`='$namaPengirim',`bukti_tf`='$photo',`status_pembayaran`='L',`expire_start`='',`expire_end`='',`status`='P' WHERE `id`='$idPesanan'");
+    $updateData = mysqli_query($conn, "UPDATE `pemesanan` SET `via_bank`='$akunTujuan',`jumlah_bayar`='$jumlah',`asal_bank`='$asalBank',`nama_pengirim`='$namaPengirim',`bukti_tf`='$photo',`status_pembayaran`='L',`expire_start`='',`expire_end`='',`status`='P' WHERE `id`='$idPesanan'");
 
     if ($updateData) {
         header("Location:../../pemesananSelesai.php");
