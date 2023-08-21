@@ -251,11 +251,8 @@ $idPesanan = $_GET['id_pemesanan'];
                                     <!-- tambahan -->
                                     <input type="text" hidden name="id_pesanan" class="form-control" id="" value="<?php echo $idPesanan?>" required>
                                     <input type="text" hidden name="harga_layanan" class="form-control" id="" required value="<?php echo $dataPesanan['layanan_harga']?>">
+                                    <input type="number" hidden name="jumlah_tf" class="form-control CurrencyInput" required value="<?php echo $dataPesanan['layanan_harga'] ?>">
                                     <!-- end tambahan -->
-                                </div>
-                                <div class="form-group bank mb-2">
-                                    <label for="currency-field" class="mb-2">Jumlah</label>
-                                    <input type="number" name="jumlah_tf" class="form-control CurrencyInput" required>
                                 </div>
                                 <div class="form-group bank mb-2">
                                     <label for="" class="mb-2">Nama Pengirim</label>

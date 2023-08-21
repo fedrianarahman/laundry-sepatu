@@ -168,16 +168,16 @@ if (isset($_GET['id'])) {
                                                     <div class="form-group">
                                                         <label class="display-block"> Status</label>
                                                     </div>
-                                                    <!-- <div class="form-check form-check-inline">
+                                                    <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Antrian" checked>
                                                         <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Antrian</label>
-                                                    </div> -->
-                                                    <div class="form-check form-check-inline">
+                                                    </div>
+                                                    <!-- <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="status" id="blog_inactive" value="Sepatu Dalam Proses Pencucian" checked>
                                                         <label class="form-check-label" for="blog_inactive">
                                                             Sepatu Dalam Proses Pencucian
                                                         </label>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 </div>
                                             <?php }?>
@@ -242,12 +242,12 @@ if (isset($_GET['id'])) {
                                                         <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Antrian" checked>
                                                         <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Antrian</label>
                                                     </div>
-                                                    <div class="form-check form-check-inline">
+                                                    <!-- <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="status" id="blog_inactive" value="Sepatu Dalam Proses Pencucian">
                                                         <label class="form-check-label" for="blog_inactive">
                                                             Sepatu Dalam Proses Pencucian
                                                         </label>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 </div>
                                             <?php }?>
