@@ -14,8 +14,8 @@ if (!isset($_SESSION['nama'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Data USer</title>
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-biru.png">
+    <title>Tambah Data USer</title>
+    <?php include './include/iconWeb.php' ?>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
@@ -39,7 +39,7 @@ if (!isset($_SESSION['nama'])) {
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-12 ">
-                            <h3 class="page-title mt-3">Tambah Data Obat</h3>
+                            <h3 class="page-title mt-3">Tambah Data User</h3>
                             <!-- <ul class="breadcrumb">
                                 <li class="breadcrumb-item active">Data Kategori Obat Page</li>
                             </ul> -->

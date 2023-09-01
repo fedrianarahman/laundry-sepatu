@@ -1,0 +1,4 @@
+host="	sql300.infinityfree.com"
+db="if0_34891363_web_berita"
+username="if0_34891363"
+

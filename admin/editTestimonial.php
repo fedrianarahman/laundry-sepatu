@@ -1,12 +1,11 @@
 <?php
 session_start();
-include './controller/conn.php';
-// Cek apakah sesi login telah diatur
 if (!isset($_SESSION['nama'])) {
     header("Location: ./auth/login.php");
     exit();
 }
-$kode_spt = $_GET['id'];
+include './controller/conn.php';
+$id = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,7 @@ $kode_spt = $_GET['id'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Edit Data Sepatu</title>
+    <title> Edit Data Testimonial</title>
     <?php include './include/iconWeb.php' ?>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
@@ -24,6 +23,20 @@ $kode_spt = $_GET['id'];
     <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
     <link rel="stylesheet" href="assets/plugins/morris/morris.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .card-custom {
+            max-width: 250px;
+            position: relative;
+            padding: 5px;
+            border: 1px solid #ddd;
+            margin: auto;
+        }
+
+        .card-custom img {
+            width: 100%;
+            object-fit: fill;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,7 +53,7 @@ $kode_spt = $_GET['id'];
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-12 ">
-                            <h3 class="page-title mt-3">Tambah Data Sepatu</h3>
+                            <h3 class="page-title mt-3">Tambah Data Testimonial</h3>
                             <!-- <ul class="breadcrumb">
                                 <li class="breadcrumb-item active">Data Kategori Obat Page</li>
                             </ul> -->
@@ -56,75 +69,68 @@ $kode_spt = $_GET['id'];
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <form method="POST" action="./controller/sepatu/add.php" enctype="multipart/form-data">
+                                        <form method="POST" action="./controller/testimonial/update.php" enctype="multipart/form-data" >
                                             <?php
-                                            // mengambil data berdasarkan kode sepatu
-                                            $ambilDataProgress = mysqli_query($conn, "SELECT * FROM progress_sepatu WHERE kode_sepatu = '$kode_spt' GROUP BY kode_sepatu");
-                                            while ($dataProgress = mysqli_fetch_array($ambilDataProgress)) {
+                                            $getData= mysqli_query($conn, "SELECT * FROM testimonial WHERE id = '$id'");
+                                            while ($dataTestimonial = mysqli_fetch_array($getData)) {
+                                                
                                             ?>
                                             <div class="row formtype">
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Nama Pemilik</label>
-                                                        <input class="form-control" type="text" name="nama_pemilik" value="<?php echo $dataProgress['pemilik']?>">
+                                                        <div class="card-custom">
+                                                            <img id="blah" src="./assets/img/testimonial/<?php echo $dataTestimonial['photo_before'] ?>" alt="">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>NO HP Pemilik</label>
-                                                        <input class="form-control" type="text" name="no_hp_pemilik" value="<?php echo $dataProgress['no_hp_pemilik']?>">
+                                                        <div class="card-custom">
+                                                            <img id="blah1" src="./assets/img/testimonial/<?php echo $dataTestimonial['photo_after'] ?>" alt="">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Jenis Sepatu</label>
-                                                        <input class="form-control" type="text" name="jenis_sepatu" value="<?php echo $dataProgress['merk_sepatu']?>">
+                                                        <label>Photo Before</label>
+                                                        <input class="form-control" type="file" name="photoBefore" onchange="readURL(this);">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Warna</label>
-                                                        <input class="form-control" type="text" name="warna" value="<?php echo $dataProgress['pemilik']?>">
+                                                        <label>Photo After</label>
+                                                        <input class="form-control" type="file" name="photoAfter" onchange="readURL1(this);">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Role</label>
+                                                        <label>Nama Sepatu</label>
+                                                        <input class="form-control" type="text" name="nama_sepatu" value="<?php  echo $dataTestimonial['merk_sepatu'] ?>">
+                                                        <input hidden class="form-control" type="text" name="id_testimonial" value="<?php  echo $dataTestimonial['id'] ?>">
+                                                        <input hidden class="form-control" type="text" name="photo_before_old" value="<?php  echo $dataTestimonial['photo_before'] ?>">
+                                                        <input hidden class="form-control" type="text" name="photo_after_old" value="<?php  echo $dataTestimonial['photo_after'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Layanan</label>
                                                         <select class="form-control" name="jenis_layanan">
                                                             <option>Pilih</option>
                                                             <?php
                                                             $ambildataService = mysqli_query($conn, "SELECT * FROM service");
                                                             while ($dataService = mysqli_fetch_array($ambildataService)) {
                                                             ?>
-                                                                <option value="<?php echo $dataService['id'] ?>" <?php if ($dataProgress['jenis_layanan'] == $dataService['id']) {
+                                                                <option <?php if ($dataTestimonial['jenis_layanan']== $dataService['judul']) {
                                                                     echo 'selected';
-                                                                }?>><?php echo ucwords($dataService['judul']) ?></option>
+                                                                } 
+                                                                 ?> value="<?php echo $dataService['judul'] ?>" ><?php echo ucwords($dataService['judul'])?></option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="display-block">Status</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="status" id="blog_active" value="Sepatu Dalam Proses Antrian" <?php if ($dataProgress['status'] == "Sepatu Dalam Proses Antrian") {
-                                                            echo 'checked';
-                                                        }?>>
-                                                        <label class="form-check-label" for="blog_active">Sepatu Dalam Proses Antrian</label>
-                                                    </div>
-                                                    <!-- <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="status" id="blog_inactive" value="Sepatu Dalam Proses Pencucian" <?php if ($dataProgress['status'] =="Sepatu Dalam Proses Pencucian") {
-                                                            echo 'checked';
-                                                        }?>>
-                                                        <label class="form-check-label" for="blog_inactive">
-                                                            Sepatu Dalam Proses Pencucian
-                                                        </label>
-                                                    </div> -->
-                                                </div>
                                             </div>
                                             <?php }?>
-                                            <a href="./dataSepatu.php" class="btn btn-warning text-white">Kembali</a>
+                                            <a href="./dataTestimonial.php" class="btn btn-warning text-white">Kembali</a>
                                             <button class="btn btn-primary " style="float: right;">Save</button>
                                             <div class="row">
                                             </div>
@@ -147,6 +153,32 @@ $kode_spt = $_GET['id'];
     <script src="assets/plugins/morris/morris.min.js"></script>
     <script src="assets/js/chart.morris.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah1')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -15,6 +15,8 @@ session_start();
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
   <!-- link fontawesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- owl carousel -->
+  <link rel="stylesheet" href="./assets/owl/owl.carousel.min.css">
   <!-- link css -->
   <link rel="stylesheet" href="./assets/css/style.css" />
   <style>
@@ -56,16 +58,44 @@ session_start();
       color: white;
     }
 
-    
-    #about,#service,#contact,#check-shoes-progress {
-  scroll-margin-top: 100px; /* Sesuaikan dengan ukuran tinggi navbar */
-}
-.check-shoes-progress-2{
-  background-image: url('./assets/img/bg-cek-pesanan.png');
-    background-repeat: no-repeat;
-    margin-bottom: 150px;
-}
+
+    #about,
+    #service,
+    #contact,
+    #check-shoes-progress {
+      scroll-margin-top: 100px;
+      /* Sesuaikan dengan ukuran tinggi navbar */
+    }
+
+    .check-shoes-progress-2 {
+      background-image: url('./assets/img/bg-cek-pesanan.png');
+      background-repeat: no-repeat;
+      margin-bottom: 150px;
+    }
+
+   .owl-carousel .card .img-top {
+      display: none;
+      transition: opacity 0.5s ease;
+      /* Ubah jenis transisi ke 'ease' */
+    }
+
+    .card {
+      cursor: pointer;
+    }
+
+    .card:hover .img-top {
+      display: block;
+      opacity: 1;
+
+    }
+
+    .card:hover .img-back {
+      display: none;
+      opacity: 0;
+    }
   </style>
+  <script src="./assets/owl/jquery.min.js"></script>
+  <script src="./assets/owl/owl.carousel.js"></script>
 </head>
 
 <body>
@@ -89,11 +119,11 @@ session_start();
               kami menghadirkan solusi khusus untuk menjaga sepatu Anda tetap
               bersih, segar, dan tahan lama.
             </p>
-           <a href="#check-shoes-progress" style="text-decoration: none;">
-           <button class="btn-cek-pesanan">
-              Cek Pesanan Saya <i class="fa-solid fa-arrow-right"></i>
-            </button>
-           </a>
+            <a href="#check-shoes-progress" style="text-decoration: none;">
+              <button class="btn-cek-pesanan">
+                Cek Pesanan Saya <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </a>
           </div>
           <div class="col-md-6">
             <img class="img-first" src="./assets/img/shoes.png" alt="" />
@@ -120,43 +150,42 @@ session_start();
 
           <div class="time-line-wrapper">
             <div class="timeline p-4 block mb-4">
-             <?php
-             if (isset($_POST['submit'])) {
-              $kode_spt = $_POST['kode_sepatu'];
-              $getStatus = mysqli_query($conn, "SELECT status, IFNULL(created_at, updated_at) AS tanggal FROM progress_sepatu WHERE kode_sepatu = '$kode_spt'");
-          
-              if (mysqli_num_rows($getStatus) > 0) {
+              <?php
+              if (isset($_POST['submit'])) {
+                $kode_spt = $_POST['kode_sepatu'];
+                $getStatus = mysqli_query($conn, "SELECT status, IFNULL(created_at, updated_at) AS tanggal FROM progress_sepatu WHERE kode_sepatu = '$kode_spt'");
+
+                if (mysqli_num_rows($getStatus) > 0) {
                   while ($r = mysqli_fetch_array($getStatus)) {
-                      $tanggal = $r['tanggal'];
-                      $hari = date('l', strtotime($tanggal));
-          
-                      echo '<div class="tl-item active">
+                    $tanggal = $r['tanggal'];
+                    $hari = date('l', strtotime($tanggal));
+
+                    echo '<div class="tl-item active">
                               <div class="tl-dot ';
-                      if ($r['status'] == 'finish') {
-                          echo 'tl-dot-finish';
-                      } else {
-                          echo 'tl-dot';
-                      }
-                      echo '"></div>
+                    if ($r['status'] == 'finish') {
+                      echo 'tl-dot-finish';
+                    } else {
+                      echo 'tl-dot';
+                    }
+                    echo '"></div>
                               <div class="tl-content">
                                 <div>';
-                      if ($r['status'] == "finish") {
-                          echo 'Sepatu Sudah Selesai';
-                      } else {
-                          echo $r['status'];
-                      }
-                      echo '</div>
+                    if ($r['status'] == "finish") {
+                      echo 'Sepatu Sudah Selesai';
+                    } else {
+                      echo $r['status'];
+                    }
+                    echo '</div>
                                 <div class="tl-date text-muted mt-1">' . $hari . ', ' . $tanggal . '</div>
                               </div>
                           </div>';
                   }
-          
-              } else {
+                } else {
                   echo '<script>alert("Tidak Ada Pesanan")</script>';
+                }
               }
-          }
-          
-             ?>
+
+              ?>
             </div>
           </div>
 
@@ -176,74 +205,32 @@ session_start();
   </section>
   <!-- end shoes progress -->
 
- 
+
 
   <!-- testimonial -->
+  <div class="container">
   <section class="testimonial" id="testimonial">
     <h2>Testimonial</h2>
-    <div class="container">
-      <div class="row">
-
-
-        <div class="col-md-4">
-
-          <div class="card border-0 card-customer-service">
-            <div class="card-cutomer-service-header">
-              <div class="img-customer">
-                <img src="./assets/img/user.png" alt="">
+      <div class="home-demo">
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="owl-carousel">
+              <?php
+              $getData = mysqli_query($conn ,"SELECT * FROM testimonial");
+              while ($dataTestimonial = mysqli_fetch_array($getData)) {
+                
+              ?>
+              <div class="card border-0 card-customer-service">
+                <img src="./admin/assets/img/testimonial/<?php echo $dataTestimonial['photo_before'] ?>" alt="" class="img-back">
+                <img src="./admin/assets/img/testimonial/<?php echo $dataTestimonial['photo_after'] ?>" alt="" class="img-top">
+                <div class="card-body">
+                  <p><?php echo ucwords($dataTestimonial['merk_sepatu'])?></p>
+                  <h3 style="color: #72A4A5;"><?php echo ucwords($dataTestimonial['jenis_layanan'])?></h3>
+                </div>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eligendi iste, eveniet consequuntur cumque recusandae nesciunt qui </p>
+              <?php }?>
             </div>
-            <div class="card-customer-body">
-              <h5>Raden</h5>
-              <div class="icon">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 card-customer-service">
-            <div class="card-cutomer-service-header">
-              <div class="img-customer">
-                <img src="./assets/img/user.png" alt="">
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eligendi iste, eveniet consequuntur cumque recusandae nesciunt qui </p>
-            </div>
-            <div class="card-customer-body">
-              <h5>Raden</h5>
-              <div class="icon">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card border-0 card-customer-service">
-            <div class="card-cutomer-service-header">
-              <div class="img-customer">
-                <img src="./assets/img/user.png" alt="">
-              </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eligendi iste, eveniet consequuntur cumque recusandae nesciunt qui </p>
-            </div>
-            <div class="card-customer-body">
-              <h5>Raden</h5>
-              <div class="icon">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
@@ -252,7 +239,7 @@ session_start();
   <!-- end testimonial -->
 
   <!-- footer -->
-      <?php include './include/footer.php' ?>
+  <?php include './include/footer.php' ?>
   <!-- end-footer -->
   <!-- bootstrap js -->
 
@@ -260,6 +247,30 @@ session_start();
   <!-- font awesome -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
   <script src="./assets/js/script.js"></script>
+  <!-- caoruswl -->
+  <script>
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+      margin: 10,
+      loop: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 2
+        },
+        1000: {
+          items: 3
+        }
+      }
+    })
+  </script>
+
+
+  <!-- vendors -->
+  <script src="./assets/owl/highlight.js"></script>
+  <script src="./assets/owl/app.js"></script>
 </body>
 
 </html>

@@ -15,8 +15,8 @@ $idUser = $_SESSION['id_user'];
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>Apotek</title>
-	<link rel="shortcut icon" type="image/x-icon" href="./assets/img/logo-biru.png">
+	<title>Profile|Admin</title>
+	<?php include './include/iconWeb.php' ?>
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">

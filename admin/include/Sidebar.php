@@ -17,6 +17,10 @@ print_r($route)
 						<li> <a href="dataSepatu.php"><i class="fas fa-shoe-prints"></i> <span>Sepatu</span></a> </li>
 						<li> <a href="dataAkunBank.php"><i class="fas fa-money-check"></i> <span>Akun Bank</span></a> </li>
 						<li class="list-divider"></li>
+						<li> <a href="dataPanduan.php"><i class="fas fa-question"></i> <span>Panduan</span></a> </li>
+						<li class="list-divider"></li>
+						<li> <a href="dataTestimonial.php"><i class="fas fa-images"></i> <span>Testimonial</span></a> </li>
+						<li class="list-divider"></li>
 						<?php
 						if ($_SESSION['level'] == 'admin') {
 							

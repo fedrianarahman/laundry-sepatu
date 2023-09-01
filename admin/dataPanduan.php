@@ -14,7 +14,7 @@ if (!isset($_SESSION['nama'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-  <title>Data Service</title>
+  <title>Data Panduan</title>
   <?php include './include/iconWeb.php' ?>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
@@ -23,6 +23,12 @@ if (!isset($_SESSION['nama'])) {
   <link rel="stylehseet" href="https://cdn.oesmith.co.uk/morris-0.5.1.css">
   <link rel="stylesheet" href="assets/plugins/morris/morris.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .panduan{
+        font-weight: bolder;
+        font-size: 25px;
+    }
+  </style>
 </head>
 
 <body>
@@ -41,7 +47,7 @@ if (!isset($_SESSION['nama'])) {
           <div class="row align-items-center">
             <div class="col">
               <div class="mt-5">
-                <h4 class="card-title float-left mt-2">Service</h4> <a href="addService.php" class="btn btn-primary float-right veiwbutton">Add Service</a>
+                <h4 class="card-title float-left mt-2">Panduan Pemesanan</h4> <a href="addPanduan.php" class="btn mt-2 btn-primary float-right veiwbutton">Tambah</a>
               </div>
             </div>
           </div>
@@ -86,27 +92,38 @@ if (!isset($_SESSION['nama'])) {
         }
         ?>
         <div class="row">
-
-          <?php
-          $ambilDataService = mysqli_query($conn, "SELECT * FROM service");
-          while ($data = mysqli_fetch_array($ambilDataService)) {
-          ?>
-            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-
-              <div class="card p-4">
-                <img class="card-img" width="50px" height="150px" src="./assets/img/image-content/<?php echo $data['photo'] ?>" alt="">
-
-                <div class="card-body">
-                  <h4 class="card-title text-center"><?php echo ucwords($data['judul']) ?></h4>
-                  <p class="card-text mt-3 text-center"><?php echo $data['subJudul'] ?></p>
-                  <p class="card-text mt-3 text-center">Rp <?php echo number_format($data['harga'], 0, ',', '.') ?></p>
-                  <a href="./editService.php?id=<?php echo $data['id'] ?>" class="btn btn-info">Edit</a>
-                  <a href="./controller/service/delete.php?id=<?php echo $data['id'] ?>" class="btn btn-danger">Hapus</a>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card shadow-sm">
+                            <div class="card-body mx-auto">
+                                <p class="text-center panduan mb-4">Panduan</p>
+                                <ul>
+                              <?php
+                              $getData = mysqli_query($conn, "SELECT * FROM panduan WHERE status='panduan' ORDER BY id ASC");
+                              while ($dataPanduan = mysqli_fetch_array($getData)) {
+                              ?>
+                                    <li><?php echo $dataPanduan['judul'] ?><span><a href="./editPanduan.php?id=<?php echo $dataPanduan['id'] ?>" class="ml-4"><i class="fas fa-edit"></i></a><a href="./controller/panduan/delete.php?id=<?php echo $dataPanduan['id'] ?>" class="ml-2"><i class="fas fa-trash-alt"></i></a></span></li>
+                                    <?php
+                                }
+                                ?>
+                                </ul>
+                                <p class="text-center text-danger panduan mb-4">Note</p>
+                                <ul>
+                                <?php
+                                $getData = mysqli_query($conn, "SELECT * FROM panduan WHERE status='note' ORDER BY id ASC");
+                                while ($dataPanduan = mysqli_fetch_array($getData)) {
+                                  
+                                ?>
+                                    <li class="text-danger"><?php echo $dataPanduan['judul'] ?> <span><a href="./editPanduan.php?id=<?php echo $dataPanduan['id'] ?>" class="ml-4"><i class="fas fa-edit"></i></a><a href="./controller/panduan/delete.php?id=<?php echo $dataPanduan['id'] ?>" class="ml-2"><i class="fas fa-trash-alt"></i></a></span></li>
+                                    <?php }?>
+                                </ul>
+                              
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-              </div>
             </div>
-          <?php } ?>
         </div>
       </div>
     </div>

@@ -44,10 +44,8 @@ $kode_spt = $_GET['kode_spt'];
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-12 mt-5">
-                            <h3 class="page-title mt-3">Good Morning Soeng Souy!</h3>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item active"><?php echo "Route halaman saat ini: " . $route; ?></li>
-                            </ul>
+                            <h3 class="page-title mt-3"><?php include './include/welcomeText.php'  ?></h3>
+                           
                         </div>
                     </div>
                 </div>

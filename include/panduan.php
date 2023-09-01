@@ -1,3 +1,6 @@
+<?php
+include './controller/conn.php';
+?>
 <style>
     .whats-app {
       position: fixed;
@@ -46,18 +49,33 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+    
       <div class="modal-header">
         <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Panduan Pemesanan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <ul>
-          <li>Registrasi Akun</li>
-          <li>Sign in</li>
-          <li>Pilih Layanan</li>
-          <li>Input Informasi Sepatu Yang akan ditreatment</li>
-          <li>Lakukan Pembayaran</li>
-          <li>Antar Sepatu</li>
+        <?php
+      $getData = mysqli_query($conn, "SELECT * FROM panduan WHERE status='panduan'");
+      while ($dataPanduan = mysqli_fetch_array($getData)) {
+      ?>
+          <li><?php echo $dataPanduan['judul'] ?></li>
+          <?php }?>
+        </ul>
+      </div>
+      <div class="modal-header">
+        <h1 class="modal-title text-danger text-center fs-5" id="exampleModalLabel">Note</h1>
+      </div>
+      <div class="modal-body">
+        <ul>
+        <?php
+      $getData = mysqli_query($conn, "SELECT * FROM panduan WHERE status='note'");
+      while ($dataPanduan = mysqli_fetch_array($getData)) {
+      ?>
+          <li class="text-danger"><?php echo $dataPanduan['judul'] ?></li>
+          <?php }?>
+        
         </ul>
       </div>
       <div class="modal-footer">

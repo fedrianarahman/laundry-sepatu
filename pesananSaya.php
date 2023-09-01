@@ -143,7 +143,7 @@ $idUser = $_SESSION['user_id'];
                              FROM progress_sepatu p1
                              INNER JOIN service ON service.id = p1.jenis_layanan
                              LEFT JOIN progress_sepatu p2 ON p1.kode_sepatu = p2.kode_sepatu AND p1.id < p2.id
-                             WHERE p2.id IS NULL AND p1.userId = '$idUser'");
+                             WHERE p2.id IS NULL AND p1.userId = '$idUser' ORDER BY p1.id DESC");
                              $i = 1;
                              if (mysqli_num_rows($getDataSepatu) >0) {
                                 
@@ -202,7 +202,12 @@ $idUser = $_SESSION['user_id'];
                                                             echo '<span class="badge badge-custom-proses">Masih Dalam Pengerjaan</span>';
                                                         }
                                                         ?></td>
-                                            <td class="text-center">-</td>
+                                            <td class="text-center"><?php if ( $dataSepatu['status_sepatu']=='sudah diambil') {
+                                                $tglPengambilan = strtotime($dataSepatu['updated_at']);
+                                                echo date('d F Y', $tglPengambilan);
+                                            }else{
+                                                echo '-';
+                                            } ?></td>
                                         </tr>
                                     <?php } ?>
                                 </table>
